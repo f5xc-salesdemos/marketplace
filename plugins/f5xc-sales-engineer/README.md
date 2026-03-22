@@ -42,10 +42,10 @@ execution, Q&A, and teardown.
 
 ## Agents
 
-| Agent              | Purpose                                                                       |
-| ------------------ | ----------------------------------------------------------------------------- |
-| `demo-housekeeping` | Autonomous pre-meeting verification (Readiness Matrix T0–T5) and teardown    |
-| `demo-researcher`  | Read-only research librarian with structured citation reports                  |
+| Agent                | Purpose                                                                    |
+| -------------------- | -------------------------------------------------------------------------- |
+| `demo-housekeeping`  | Autonomous pre-meeting verification (Readiness Matrix T0–T5) and teardown  |
+| `demo-researcher`    | Read-only research librarian with structured citation reports               |
 
 ## Convention Files
 
@@ -53,21 +53,21 @@ This plugin reads product-specific content from standardized files
 in each repository root. Create these files to configure the plugin
 for your product:
 
-| File                   | Purpose                                           | Required         |
-| ---------------------- | ------------------------------------------------- | ---------------- |
-| `PRODUCT_EXPERTISE.md` | Product capabilities, API reference                | Yes              |
-| `WALKTHROUGH_CONFIG.md` | Demo app URL, walkthrough order, timing           | For presenter    |
-| `SOURCE_INDEX.md`      | Research source catalog (local docs + external)    | For Q&A          |
-| `READINESS_MATRIX.md`  | Required/optional variables, readiness checks      | For prep/teardown |
-| `docs/api-automation/` | Phase files with cURL commands                     | For demo-executor |
+| File                    | Purpose                                         | Required          |
+| ----------------------- | ----------------------------------------------- | ----------------- |
+| `PRODUCT_EXPERTISE.md`  | Product capabilities, API reference              | Yes               |
+| `WALKTHROUGH_CONFIG.md` | Demo app URL, walkthrough order, timing          | For presenter     |
+| `SOURCE_INDEX.md`       | Research source catalog (local docs + external)  | For Q&A           |
+| `READINESS_MATRIX.md`   | Required/optional variables, readiness checks    | For prep/teardown |
+| `docs/api-automation/`  | Phase files with cURL commands                   | For demo-executor |
 
 ## Trigger Phrases
 
-| Phrase                                                   | Skill                    |
-| -------------------------------------------------------- | ------------------------ |
-| "run the demo", "execute the demo", "start the demo"    | demo-executor (Execute)  |
-| "prepare the demo", "pre-flight", "is the demo ready"   | demo-executor (Prepare)  |
-| "Q&A", "question and answer", "take questions"          | demo-executor (Q&A)      |
-| "tear down", "clean up", "end the meeting"              | demo-executor (Teardown) |
-| "walk through the demo", "present the demo", "walkthrough" | presenter             |
-| "answer questions", "explain", "what does"              | subject-matter-expert    |
+| Phrase                                                      | Skill                    |
+| ----------------------------------------------------------- | ------------------------ |
+| "run the demo", "execute the demo", "start the demo"       | demo-executor (Execute)  |
+| "prepare the demo", "pre-flight", "is the demo ready"      | demo-executor (Prepare)  |
+| "Q&A", "question and answer", "take questions"             | demo-executor (Q&A)      |
+| "tear down", "clean up", "end the meeting"                 | demo-executor (Teardown) |
+| "walk through the demo", "present the demo", "walkthrough" | presenter                |
+| "answer questions", "explain", "what does"                 | subject-matter-expert    |
