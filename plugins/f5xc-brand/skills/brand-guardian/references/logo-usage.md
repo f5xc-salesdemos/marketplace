@@ -3,10 +3,10 @@
 Source: `docs-theme/assets/` and `docs-theme/docs/logo.mdx`
 
 Live documentation:
-https://f5xc-salesdemos.github.io/docs-theme/logo/
+<https://f5xc-salesdemos.github.io/docs-theme/logo/>
 
 F5 Brand Center:
-https://brand.f5.com/d/yYzHXTsZ4EGq/logos
+<https://brand.f5.com/d/yYzHXTsZ4EGq/logos>
 
 ## Available logo assets
 

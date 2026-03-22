@@ -98,7 +98,7 @@ F5 uses two font families with distinct roles:
 | H3 | Neusa Next Pro Wide | 500 (Medium) | Sentence case | 1.1x |
 | H4-H6 | Proxima Nova | 700 (Bold) | UPPERCASE | 0.05em letter-spacing |
 
-### Typography rules
+### Usage rules
 
 - Body text minimum size is 16px
 - Headlines always use sentence case (capitalize first word only),

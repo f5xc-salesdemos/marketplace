@@ -138,7 +138,7 @@ naming issues.
   expansion in the same file → SUGGESTION
 - Lowercase product names that should be capitalized:
   "bot defense" → "Bot Defense",
-  "web app and api protection" → "Web App and API Protection",
+  "web app and API protection" → "Web App and API Protection",
   "client-side defense" → "Client-Side Defense",
   "distributed cloud" → "Distributed Cloud"
   → SUGGESTION
