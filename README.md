@@ -9,10 +9,10 @@ A Claude Code plugin marketplace for the [f5xc-salesdemos](https://github.com/f5
 
 ## Plugin Catalog
 
-| Plugin | Version | Category | Description |
-|--------|---------|----------|-------------|
-| [f5xc-docs-tools](plugins/f5xc-docs-tools/) | 1.0.0 | Productivity | MDX content validation and review tools for documentation repositories |
-| [f5xc-sales-engineer](plugins/f5xc-sales-engineer/) | 1.0.0 | Productivity | Sales Engineer persona framework — demo execution, presentation, Q&A, environment management |
+| Plugin                                                | Version | Category     | Description                                                                                    |
+| ----------------------------------------------------- | ------- | ------------ | ---------------------------------------------------------------------------------------------- |
+| [f5xc-docs-tools](plugins/f5xc-docs-tools/)           | 1.0.0   | Productivity | MDX content validation and review tools for documentation repositories                         |
+| [f5xc-sales-engineer](plugins/f5xc-sales-engineer/)   | 1.0.0   | Productivity | Sales Engineer persona framework — demo execution, presentation, Q&A, environment management   |
 
 ## Quick Start
 
