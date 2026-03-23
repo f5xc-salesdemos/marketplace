@@ -80,11 +80,11 @@ blocks later tiers.
 Read `READINESS_MATRIX.md` for tier behavior rules (which tiers
 block, PASS/FAIL criteria, skip conditions). Read the executable
 commands from `docs/api-automation/index.mdx` — the "Readiness
-Verification Matrix" section contains the exact bash commands with
+Verification Matrix" section contains the exact Bash commands with
 deterministic jq filters for every check.
 
 **Critical: copy the exact code blocks from `index.mdx`.**
-Do not construct your own curl or jq commands — the documented
+Do not construct your own cURL or jq commands — the documented
 commands have been validated against the live API and contain the
 correct field paths (e.g., `.spec.primary.allow_http_lb_managed_records`,
 not `.spec.allow_http_lb_managed_records`). Copy each fenced code
