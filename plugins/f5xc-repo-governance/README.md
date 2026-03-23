@@ -58,13 +58,13 @@ or `Write`)
 
 **Status codes:**
 
-| Status              | Meaning                                       |
-| ------------------- | --------------------------------------------- |
-| `COMPLETE`          | Full lifecycle finished successfully           |
-| `PRE_COMMIT_FAILED` | Lint gate failed — fix code and re-delegate   |
-| `CI_FAILED`         | CI checks failed — error posted to issue      |
-| `FAILED`            | Git/GitHub operation failed                   |
-| `BLOCKED`           | Cannot proceed (rate limit, missing config)   |
+| Status              | Meaning                                     |
+| ------------------- | ------------------------------------------- |
+| `COMPLETE`          | Full lifecycle finished successfully        |
+| `PRE_COMMIT_FAILED` | Lint gate failed — fix code and re-delegate |
+| `CI_FAILED`         | CI checks failed — error posted to issue    |
+| `FAILED`            | Git/GitHub operation failed                 |
+| `BLOCKED`           | Cannot proceed (rate limit, missing config) |
 
 **Delegation pattern:**
 
