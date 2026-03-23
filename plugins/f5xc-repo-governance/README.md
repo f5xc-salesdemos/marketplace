@@ -16,7 +16,7 @@ verification, and task completion criteria.
 merging, monitoring CI, verifying outcomes, or
 encountering GitHub API rate limit issues.
 
-**Key behavior:** All git and GitHub operations are
+**Key behavior:** All Git and GitHub operations are
 delegated to the `github-ops` agent. The main session
 makes code changes, then delegates operational work.
 
@@ -49,7 +49,7 @@ Supersedes `commit-commands` official plugin.
 6. Squash merge and post-merge monitoring
 7. Branch cleanup and verification
 
-**Does NOT:** Edit code, fix lint errors, or fix CI
+**Does NOT:** Edit code, fix linting errors, or fix CI
 failures. Reports errors back to the calling session
 with full context.
 
@@ -58,13 +58,13 @@ or `Write`)
 
 **Status codes:**
 
-| Status | Meaning |
-|--------|---------|
-| `COMPLETE` | Full lifecycle finished successfully |
-| `PRE_COMMIT_FAILED` | Lint gate failed — fix code and re-delegate |
-| `CI_FAILED` | CI checks failed — error posted to issue |
-| `FAILED` | Git/GitHub operation failed |
-| `BLOCKED` | Cannot proceed (rate limit, missing config) |
+| Status              | Meaning                                       |
+| ------------------- | --------------------------------------------- |
+| `COMPLETE`          | Full lifecycle finished successfully           |
+| `PRE_COMMIT_FAILED` | Lint gate failed — fix code and re-delegate   |
+| `CI_FAILED`         | CI checks failed — error posted to issue      |
+| `FAILED`            | Git/GitHub operation failed                   |
+| `BLOCKED`           | Cannot proceed (rate limit, missing config)   |
 
 **Delegation pattern:**
 

@@ -41,17 +41,17 @@ they reach CI.
 
 Hooks executed in fast mode (in order):
 
-| Hook | Source | What it checks |
-|------|--------|---------------|
-| `no-commit-to-branch` | `pre-commit-hooks` | Blocks direct commits to `main` |
-| `local-hooks` | Local repo | Runs `scripts/pre-commit-local.sh` if present (repo-specific linting) |
-| `check-added-large-files` | `pre-commit-hooks` | Blocks files >1024 KB |
+| Hook                     | Source             | What it checks                                                        |
+| ------------------------ | ------------------ | --------------------------------------------------------------------- |
+| `no-commit-to-branch`    | `pre-commit-hooks` | Blocks direct commits to `main`                                       |
+| `local-hooks`            | Local repo         | Runs `scripts/pre-commit-local.sh` if present (repo-specific linting) |
+| `check-added-large-files`| `pre-commit-hooks` | Blocks files >1024 KB                                                 |
 
 Hooks skipped in fast mode:
 
-| Hook | Source | Why skipped |
-|------|--------|-------------|
-| `super-linter` | Local (Docker) | Requires Docker, ~30-60s, runs in CI instead |
+| Hook           | Source         | Why skipped                                   |
+| -------------- | -------------- | --------------------------------------------- |
+| `super-linter` | Local (Docker) | Requires Docker, ~30-60s, runs in CI instead  |
 
 ## Common Failure Patterns
 

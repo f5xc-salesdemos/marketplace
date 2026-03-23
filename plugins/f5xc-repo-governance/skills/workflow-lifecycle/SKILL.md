@@ -19,9 +19,9 @@ branches are cleaned.
 
 ## GitHub Operations Delegation
 
-ALL git and GitHub operations MUST be delegated to the
+ALL Git and GitHub operations MUST be delegated to the
 `github-ops` agent. The main session MUST NOT directly
-run git commits, pushes, PR creation, CI polling, or
+run Git commits, pushes, PR creation, CI polling, or
 pre-commit. This keeps operational context out of the
 main session and ensures governance is always enforced.
 
