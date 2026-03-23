@@ -29,14 +29,14 @@ encountering GitHub API rate limit issues.
 
 ### workflow-ops
 
-Autonomous git operations agent that any plugin can
-spawn to handle the full git lifecycle: issue creation,
+Autonomous Git operations agent that any plugin can
+spawn to handle the full Git lifecycle: issue creation,
 branch naming, commits, PR creation, CI polling,
 post-merge monitoring, and branch cleanup.
 
 **Spawned by:** Other skills/agents that need to land
 changes following organization governance. The agent
-executes git operations for changes that have already
+executes Git operations for changes that have already
 been decided — it does not decide what to change.
 
 **Delegation pattern:**

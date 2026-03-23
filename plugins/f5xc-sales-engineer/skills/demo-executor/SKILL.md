@@ -158,7 +158,7 @@ and demo materials.
 4. **Output the Debrief Report** — structured report with all
    categories, specific file references, and proposed changes
 
-**No git operations** — the Debrief stage produces a report only.
+**No Git operations** — the Debrief stage produces a report only.
 When the operator decides to act on improvements, they invoke the
 `workflow-ops` agent (from the `f5xc-repo-governance` plugin) to
 handle issue creation, branching, PRs, CI polling, and merging.
