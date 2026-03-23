@@ -200,7 +200,7 @@ show `***` instead to avoid leaking credentials.
 
 - **Normal mode only** — copy and execute the exact fenced code blocks
   from `docs/api-automation/index.mdx` and phase files. Do not
-  construct your own curl, jq, or shell commands — the documented
+  construct your own cURL, jq, or shell commands — the documented
   commands contain validated field paths and deterministic jq filters.
   Substitute only `xPLACEHOLDERx` tokens with resolved variable values.
 - **Read phase files at runtime** — use `READINESS_MATRIX.md` for
