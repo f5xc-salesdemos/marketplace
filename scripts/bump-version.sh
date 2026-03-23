@@ -34,11 +34,18 @@ die() {
 bump_semver() {
   local version="$1" level="$2"
   local major minor patch
-  IFS='.' read -r major minor patch <<< "$version"
+  IFS='.' read -r major minor patch <<<"$version"
   case "$level" in
-    major) major=$((major + 1)); minor=0; patch=0 ;;
-    minor) minor=$((minor + 1)); patch=0 ;;
-    patch) patch=$((patch + 1)) ;;
+  major)
+    major=$((major + 1))
+    minor=0
+    patch=0
+    ;;
+  minor)
+    minor=$((minor + 1))
+    patch=0
+    ;;
+  patch) patch=$((patch + 1)) ;;
   esac
   echo "${major}.${minor}.${patch}"
 }
@@ -64,8 +71,8 @@ else
 fi
 
 case "$LEVEL" in
-  major|minor|patch) ;;
-  *) die "Invalid semver level '$LEVEL'. Must be major, minor, or patch." ;;
+major | minor | patch) ;;
+*) die "Invalid semver level '$LEVEL'. Must be major, minor, or patch." ;;
 esac
 
 [[ -f "$MARKETPLACE" ]] || die "marketplace.json not found at $MARKETPLACE"
@@ -94,14 +101,14 @@ for name in "${PLUGINS[@]}"; do
   # Update marketplace.json
   jq --arg n "$name" --arg v "$NEW_VER" \
     '(.plugins[] | select(.name == $n)).version = $v' \
-    "$MARKETPLACE" > "$MARKETPLACE.tmp" && command mv "$MARKETPLACE.tmp" "$MARKETPLACE"
+    "$MARKETPLACE" >"$MARKETPLACE.tmp" && command mv "$MARKETPLACE.tmp" "$MARKETPLACE"
 
   # Update plugin.json
   PLUGIN_JSON="$REPO_ROOT/plugins/$name/.claude-plugin/plugin.json"
   [[ -f "$PLUGIN_JSON" ]] || die "plugin.json not found at $PLUGIN_JSON"
 
   jq --arg v "$NEW_VER" '.version = $v' \
-    "$PLUGIN_JSON" > "$PLUGIN_JSON.tmp" && command mv "$PLUGIN_JSON.tmp" "$PLUGIN_JSON"
+    "$PLUGIN_JSON" >"$PLUGIN_JSON.tmp" && command mv "$PLUGIN_JSON.tmp" "$PLUGIN_JSON"
 
   echo "  $name: $OLD_VER → $NEW_VER"
   CHANGELOG_ENTRIES+=("- **$name** bumped to v$NEW_VER")
