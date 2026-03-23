@@ -14,10 +14,10 @@ MARKETPLACE="$REPO_ROOT/.claude-plugin/marketplace.json"
 is_version_file() {
   local file="$1"
   case "$file" in
-    plugins/*/.claude-plugin/plugin.json) return 0 ;;
-    .claude-plugin/marketplace.json)      return 0 ;;
-    CHANGELOG.md)                         return 0 ;;
-    *)                                    return 1 ;;
+  plugins/*/.claude-plugin/plugin.json) return 0 ;;
+  .claude-plugin/marketplace.json) return 0 ;;
+  CHANGELOG.md) return 0 ;;
+  *) return 1 ;;
   esac
 }
 
@@ -53,8 +53,8 @@ for plugin_name in "${STAGED_PLUGINS[@]}"; do
   fi
 
   # New plugin guard: no HEAD version means initial creation — skip auto-bump.
-  head_version=$(git -C "$REPO_ROOT" show "HEAD:${plugin_json_rel}" 2>/dev/null \
-    | jq -r '.version // empty') || head_version=""
+  head_version=$(git -C "$REPO_ROOT" show "HEAD:${plugin_json_rel}" 2>/dev/null |
+    jq -r '.version // empty') || head_version=""
 
   if [[ -z "$head_version" ]]; then
     echo "auto-bump: skipping '$plugin_name' — new plugin, set initial version manually"
@@ -62,8 +62,8 @@ for plugin_name in "${STAGED_PLUGINS[@]}"; do
   fi
 
   # Read staged version from the git index (not working tree).
-  staged_version=$(git -C "$REPO_ROOT" show ":${plugin_json_rel}" 2>/dev/null \
-    | jq -r '.version // empty') || staged_version=""
+  staged_version=$(git -C "$REPO_ROOT" show ":${plugin_json_rel}" 2>/dev/null |
+    jq -r '.version // empty') || staged_version=""
 
   if [[ -z "$staged_version" ]]; then
     # plugin.json not yet added to the index — read from working tree.
