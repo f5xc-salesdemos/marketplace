@@ -2,7 +2,7 @@
 
 ## Shell & Terminal
 
-## zsh
+## Zsh
 
 - **Package**: `zsh` via apt + oh-my-zsh framework with plugins (zsh-autosuggestions, zsh-syntax-highlighting, powerlevel10k)
 - **Purpose**: Default interactive shell with rich plugin ecosystem for autocompletion, syntax highlighting, and a customizable prompt
@@ -140,9 +140,9 @@
 
 ## code
 
-- **Package**: VS Code CLI via manual download
+- **Package**: Visual Studio Code CLI via manual download
 - **Purpose**: Visual Studio Code command-line interface for tunnel connections and remote editing
-- **Use when**: Connecting to the devcontainer from a local VS Code instance, managing extensions
+- **Use when**: Connecting to the devcontainer from a local Visual Studio Code instance, managing extensions
 - **Quick start**:
   - `code tunnel`
   - `code --install-extension ms-python.python`

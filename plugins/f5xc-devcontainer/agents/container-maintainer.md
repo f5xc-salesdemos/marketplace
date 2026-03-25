@@ -35,7 +35,7 @@ You have access to: `Read`, `Write`, `Edit`, `Bash`, `Glob`, `Grep`.
 | Resource                | Path                                                                               |
 | ----------------------- | ---------------------------------------------------------------------------------- |
 | Tool catalog references | `/workspace/marketplace/plugins/f5xc-devcontainer/skills/tool-catalog/references/` |
-| Devcontainer repo       | `f5xc-salesdemos/devcontainer` (GitHub — do NOT assume it is cloned locally)       |
+| Devcontainer repository | `f5xc-salesdemos/devcontainer` (GitHub — do NOT assume it is cloned locally)       |
 
 ## Package Manager Reference
 
@@ -263,7 +263,7 @@ RUN ARCH=$(dpkg --print-architecture) \
     && chmod +x /usr/local/bin/<name>
 ```
 
-### git clone
+### Git clone
 
 ```bash
 sudo git clone --depth=1 --single-branch --branch main https://github.com/<org>/<repo>.git /opt/<name>
@@ -530,6 +530,6 @@ When receiving output from the `f5xc-devcontainer:tool-auditor` agent:
 4. **Always verify** — confirm install/remove succeeded before updating files
 5. **Always issue** — every install/remove MUST create a GitHub issue
 6. **Always sudo** — container runs as user `vscode`; system installs need `sudo`
-7. **Never remove critical** — refuse bash, coreutils, libc6, sudo, apt, dpkg
+7. **Never remove critical** — refuse Bash, coreutils, libc6, sudo, apt, dpkg
 8. **Never assume devcontainer clone** — use `gh issue create` not local Dockerfile edits
 9. **Preserve catalog format** — match existing entry structure exactly

@@ -9,7 +9,7 @@ and version managers installed in this devcontainer.
 
 ### node
 
-- **Package**: nodejs v25.8.1 via Homebrew (linuxbrew)
+- **Package**: Node.js v25.8.1 via Homebrew (linuxbrew)
 - **Purpose**: JavaScript and TypeScript runtime
 - **Use when**: Running JS/TS scripts, building frontend/backend apps, executing npm packages
 - **Quick start**:
@@ -55,7 +55,7 @@ and version managers installed in this devcontainer.
 - **Auth**: None
 - **Docs**: `rustc --help` or <https://doc.rust-lang.org/>
 
-### java
+### Java
 
 - **Package**: openjdk-25-jdk-headless via apt (OpenJDK 25.0.2)
 - **Purpose**: Java Development Kit for compiling and running Java applications
@@ -81,7 +81,7 @@ and version managers installed in this devcontainer.
 
 ### php
 
-- **Package**: php-cli via apt (PHP 8.3.6) with xml and mbstring extensions
+- **Package**: php-cli via apt (PHP 8.3.6) with XML and mbstring extensions
 - **Purpose**: PHP command-line interpreter
 - **Use when**: Running PHP scripts, testing PHP code, CLI-based PHP tools
 - **Quick start**:
@@ -118,7 +118,7 @@ and version managers installed in this devcontainer.
 ### dart
 
 - **Package**: dart via apt (Dart SDK 3.11.3 stable)
-- **Purpose**: Dart programming language for CLI tools and Flutter
+- **Purpose**: Dart programming language for command-line tools and Flutter
 - **Use when**: Building Dart CLI apps, running Dart scripts, Flutter development
 - **Quick start**:
   - `dart run main.dart` — run a Dart file
@@ -159,7 +159,7 @@ and version managers installed in this devcontainer.
 - **Quick start**:
   - `perl script.pl` — run a Perl file
   - `perl -e 'print "hello\n"'` — evaluate inline Perl
-  - `perl -pe 's/foo/bar/g' file.txt` — regex replacement on a file
+  - `perl -pe 's/foo/bar/g' file.txt` — regular expression replacement on a file
 - **Auth**: None
 - **Docs**: `perldoc perl` or <https://perldoc.perl.org/>
 
@@ -289,7 +289,7 @@ and version managers installed in this devcontainer.
 ### vscode-langservers-extracted
 
 - **Package**: vscode-langservers-extracted via npm (global)
-- **Purpose**: JSON, HTML, CSS, ESLint, and Markdown language servers extracted from VS Code
+- **Purpose**: JSON, HTML, CSS, ESLint, and Markdown language servers extracted from Visual Studio Code
 - **Use when**: Editing JSON, HTML, CSS, or Markdown in an LSP-compatible editor
 - **Quick start**:
   - `vscode-json-language-server --stdio` — start JSON LSP
@@ -357,7 +357,7 @@ and version managers installed in this devcontainer.
   - `pip install requests` — install a package
   - `pip install -r requirements.txt` — install from requirements file
   - `pip list` — list installed packages
-- **Auth**: None for public PyPI; token needed for private indexes
+- **Auth**: None for public PyPI; token needed for private indices
 - **Docs**: `pip help` or <https://pip.pypa.io/>
 
 ### uv
@@ -375,7 +375,7 @@ and version managers installed in this devcontainer.
 ### cargo
 
 - **Package**: cargo 1.94.0 bundled with Rust toolchain
-- **Purpose**: Rust package manager and build system
+- **Purpose**: Rust package manager and build tool
 - **Use when**: Managing Rust crate dependencies, building Rust projects
 - **Quick start**:
   - `cargo add serde` — add a dependency

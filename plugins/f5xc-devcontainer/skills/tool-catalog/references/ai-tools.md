@@ -3,7 +3,7 @@
 ## claude-code
 
 - **Package**: `@anthropic-ai/claude-code` via npm (installed globally)
-- **Purpose**: Anthropic's AI coding assistant — agentic CLI for code generation, editing, debugging, and git operations
+- **Purpose**: Anthropic's AI coding assistant — agentic CLI for code generation, editing, debugging, and Git operations
 - **Use when**: Writing new features, debugging complex issues, refactoring code, navigating unfamiliar codebases, running multi-step development tasks
 - **Quick start**:
   - `claude` (interactive REPL)

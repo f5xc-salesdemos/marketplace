@@ -58,7 +58,7 @@
 - **Quick start**:
   - `codespell .`
   - `codespell --skip="*.min.js,node_modules" .`
-  - `codespell -w .` (auto-fix)
+  - `codespell -w .` (autofix)
 - **Auth**: None
 - **Docs**: `codespell --help`
 
@@ -66,7 +66,7 @@
 
 ## JavaScript / TypeScript
 
-## eslint
+## ESLint
 
 - **Package**: `eslint` via npm
 - **Purpose**: Pluggable linter for JavaScript and TypeScript with extensive rule ecosystem
@@ -102,7 +102,7 @@
 - **Auth**: None
 - **Docs**: <https://github.com/standard/ts-standard>
 
-## typescript
+## TypeScript
 
 - **Package**: `typescript` via npm (provides `tsc`)
 - **Purpose**: TypeScript compiler — type-checks and transpiles TypeScript to JavaScript
@@ -134,7 +134,7 @@
 
 - **Package**: `black` via pip
 - **Purpose**: Uncompromising Python code formatter
-- **Use when**: Auto-formatting Python code with deterministic output
+- **Use when**: autoformatting Python code with deterministic output
 - **Quick start**:
   - `black .`
   - `black --check --diff .`
@@ -249,7 +249,7 @@
 ## clippy
 
 - **Package**: `clippy` via `rustup component add clippy`
-- **Purpose**: Official Rust linter with hundreds of lint rules
+- **Purpose**: Official Rust linter with hundreds of linter rules
 - **Use when**: Catching common Rust mistakes, enforcing idiomatic Rust patterns
 - **Quick start**:
   - `cargo clippy`
@@ -262,7 +262,7 @@
 
 - **Package**: `rustfmt` via `rustup component add rustfmt`
 - **Purpose**: Official Rust code formatter
-- **Use when**: Auto-formatting Rust code to standard style
+- **Use when**: autoformatting Rust code to standard style
 - **Quick start**:
   - `cargo fmt`
   - `cargo fmt -- --check`
@@ -278,19 +278,19 @@
 
 - **Package**: `shellcheck` via apt
 - **Purpose**: Static analysis tool for shell scripts — finds bugs, pitfalls, and style issues
-- **Use when**: Validating bash/sh/zsh scripts, catching quoting errors, CI lint checks
+- **Use when**: Validating bash/sh/Zsh scripts, catching quoting errors, CI lint checks
 - **Quick start**:
   - `shellcheck script.sh`
   - `shellcheck -s bash scripts/*.sh`
-  - `shellcheck -f diff script.sh | patch -p1` (auto-fix)
+  - `shellcheck -f diff script.sh | patch -p1` (autofix)
 - **Auth**: None
 - **Docs**: `man shellcheck`
 
 ## shfmt
 
 - **Package**: `shfmt` via manual download
-- **Purpose**: Shell script formatter supporting bash, POSIX sh, and mksh
-- **Use when**: Auto-formatting shell scripts for consistent indentation and style
+- **Purpose**: Shell script formatter supporting Bash, POSIX sh, and mksh
+- **Use when**: autoformatting shell scripts for consistent indentation and style
 - **Quick start**:
   - `shfmt -w script.sh`
   - `shfmt -d .` (diff mode)
@@ -358,7 +358,7 @@
 
 - **Package**: `google-java-format` via manual download (JAR)
 - **Purpose**: Reformats Java source code to comply with Google Java Style
-- **Use when**: Auto-formatting Java code to Google style
+- **Use when**: autoformatting Java code to Google style
 - **Quick start**:
   - `java -jar google-java-format.jar --replace src/**/*.java`
   - `java -jar google-java-format.jar --dry-run src/Main.java`
@@ -382,7 +382,7 @@
 
 - **Package**: `scalafmt` via manual download
 - **Purpose**: Scala code formatter with configurable style
-- **Use when**: Auto-formatting Scala code, enforcing consistent style in sbt projects
+- **Use when**: autoformatting Scala code, enforcing consistent style in sbt projects
 - **Quick start**:
   - `scalafmt`
   - `scalafmt --check`
@@ -401,7 +401,7 @@
 - **Use when**: Enforcing PSR-12 or custom PHP coding standards
 - **Quick start**:
   - `phpcs --standard=PSR12 src/`
-  - `phpcbf --standard=PSR12 src/` (auto-fix)
+  - `phpcbf --standard=PSR12 src/` (autofix)
   - `phpcs --report=summary .`
 - **Auth**: None
 - **Docs**: <https://github.com/PHPCSStandards/PHP_CodeSniffer>
@@ -450,7 +450,7 @@
 
 - **Package**: `stylelint` via npm
 - **Purpose**: CSS/SCSS/Less linter with 170+ built-in rules
-- **Use when**: Enforcing CSS conventions, catching errors in stylesheets
+- **Use when**: Enforcing CSS conventions, catching errors in style sheets
 - **Quick start**:
   - `npx stylelint "**/*.css"`
   - `npx stylelint --fix "src/**/*.scss"`
@@ -617,7 +617,7 @@
 ## sqlfluff
 
 - **Package**: `sqlfluff` via pip
-- **Purpose**: SQL linter and auto-formatter supporting multiple dialects (PostgreSQL, MySQL, BigQuery, etc.)
+- **Purpose**: SQL linter and autoformatter supporting multiple dialects (PostgreSQL, MySQL, BigQuery, etc.)
 - **Use when**: Enforcing SQL style, formatting queries, CI checks for SQL code
 - **Quick start**:
   - `sqlfluff lint queries/`
@@ -646,7 +646,7 @@
 
 - **Package**: `clang-format` via apt
 - **Purpose**: Code formatter for C, C++, Java, JavaScript, and Objective-C
-- **Use when**: Auto-formatting C/C++ code, enforcing consistent brace and indent style
+- **Use when**: autoformatting C/C++ code, enforcing consistent brace and indent style
 - **Quick start**:
   - `clang-format -i src/*.cpp`
   - `clang-format --style=google -i main.cc`
@@ -722,7 +722,7 @@
 
 - **Package**: `cljfmt` via manual download
 - **Purpose**: Clojure code formatter
-- **Use when**: Auto-formatting Clojure source files
+- **Use when**: autoformatting Clojure source files
 - **Quick start**:
   - `cljfmt check src/`
   - `cljfmt fix src/`

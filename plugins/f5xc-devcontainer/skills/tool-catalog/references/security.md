@@ -49,7 +49,7 @@
 ### whatweb
 
 - **Package**: `whatweb` (apt)
-- **Purpose**: Website fingerprinting and technology identification
+- **Purpose**: site fingerprinting and technology identification
 - **Use when**: Identifying web technologies, CMS, frameworks, and server software
 - **Quick start**:
   - `whatweb https://target.example.com`
@@ -159,7 +159,7 @@
 
 ### testssl.sh
 
-- **Package**: `testssl.sh` (git clone at `/opt/testssl.sh/`)
+- **Package**: `testssl.sh` (Git clone at `/opt/testssl.sh/`)
 - **Purpose**: Comprehensive TLS/SSL testing script
 - **Use when**: Thorough TLS/SSL analysis including BEAST, POODLE, Heartbleed, and other vulnerability checks
 - **Quick start**:
@@ -393,7 +393,7 @@
 ### gitleaks
 
 - **Package**: `gitleaks` (manual download)
-- **Purpose**: Detect hardcoded secrets in git repositories
+- **Purpose**: Detect hardcoded secrets in Git repositories
 - **Use when**: Scanning repositories for accidentally committed API keys, tokens, and passwords
 - **Quick start**:
   - `gitleaks detect --source .`
@@ -405,7 +405,7 @@
 ### trufflehog
 
 - **Package**: `trufflehog` (manual download)
-- **Purpose**: Secret scanner for git repos, S3 buckets, and filesystems
+- **Purpose**: Secret scanner for Git repos, S3 buckets, and filesystems
 - **Use when**: Finding leaked credentials across version control history and cloud storage
 - **Quick start**:
   - `trufflehog git file://./`
@@ -559,7 +559,7 @@
 
 ### docker-bench-security
 
-- **Package**: `docker-bench-security` (git clone at `/opt/docker-bench-security/`)
+- **Package**: `docker-bench-security` (Git clone at `/opt/docker-bench-security/`)
 - **Purpose**: Docker security audit script based on CIS Docker Benchmark
 - **Use when**: Auditing Docker host and container configurations for security best practices
 - **Quick start**:
@@ -584,7 +584,7 @@
 
 ### attack-navigator
 
-- **Package**: ATT&CK Navigator (git clone, built Angular app at `/opt/attack-navigator/`)
+- **Package**: ATT&CK Navigator (Git clone, built Angular app at `/opt/attack-navigator/`)
 - **Purpose**: MITRE ATT&CK technique visualization and annotation tool
 - **Use when**: Creating visual ATT&CK coverage maps, threat models, or gap analysis layers
 - **Quick start**:
@@ -594,7 +594,7 @@
 
 ### caldera
 
-- **Package**: MITRE CALDERA (git clone at `/opt/caldera/`)
+- **Package**: MITRE CALDERA (Git clone at `/opt/caldera/`)
 - **Purpose**: Adversary emulation and red team automation platform
 - **Use when**: Simulating adversary behavior using ATT&CK techniques for detection validation
 - **Quick start**:
@@ -604,7 +604,7 @@
 
 ### exploitdb
 
-- **Package**: Exploit Database (git clone at `/opt/exploitdb/`)
+- **Package**: Exploit Database (Git clone at `/opt/exploitdb/`)
 - **Purpose**: Searchable archive of public exploits and vulnerable software
 - **Use when**: Searching for known exploits by CVE, software name, or platform
 - **Quick start**:
@@ -616,7 +616,7 @@
 
 ### SecLists
 
-- **Package**: SecLists (git clone at `/opt/SecLists/`)
+- **Package**: SecLists (Git clone at `/opt/SecLists/`)
 - **Purpose**: Comprehensive collection of security testing wordlists
 - **Use when**: Needing wordlists for fuzzing, brute-forcing, or enumeration tasks
 - **Quick start**:

@@ -66,11 +66,11 @@ Tools for messaging platforms, communication integrations, and email.
 - **Auth**: SMTP credentials via env vars (`SMTP_USER`, `SMTP_PASS`) or OAuth2 token. For Gmail use App Password or OAuth2.
 - **Docs**: <https://nodemailer.com/>
 
-## curl (SMTP)
+## cURL (SMTP)
 
 - **Package**: `curl` (apt) — built-in, no install needed
 - **Purpose**: Send email directly via SMTP using curl's built-in SMTP support — no extra tools needed
-- **Use when**: Quick scripted email sends without installing dedicated mail tools; already have curl in your pipeline
+- **Use when**: Quick scripted email sends without installing dedicated mail tools; already have cURL in your pipeline
 - **Quick start**:
   - `curl --url "smtps://smtp.gmail.com:465" --ssl-reqd --mail-from "you@gmail.com" --mail-rcpt "to@example.com" --upload-file mail.txt --user "you@gmail.com:app-password"`
   - `curl --url "smtp://smtp.gmail.com:587" --starttls-smtp --mail-from "you@gmail.com" --mail-rcpt "to@example.com" -T mail.txt --user "you@gmail.com:app-password"`

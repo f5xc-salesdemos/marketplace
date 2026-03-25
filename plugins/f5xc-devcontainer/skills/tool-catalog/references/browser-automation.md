@@ -8,7 +8,7 @@ Tools for browser automation, headless browsing, web scraping, and anti-detectio
 
 - **Package**: `npm install playwright` / `pip install playwright` then `playwright install`
 - **Purpose**: Browser automation framework supporting Chromium, Firefox, and WebKit with a single API
-- **Use when**: You need to automate browser interactions, run end-to-end tests, scrape dynamic websites, or generate PDFs/screenshots
+- **Use when**: You need to automate browser interactions, run end-to-end tests, scrape dynamic sites, or generate PDFs/screenshots
 - **Quick start**:
   - `const { chromium } = require('playwright'); const browser = await chromium.launch(); const page = await browser.newPage();`
   - `await page.goto('https://example.com'); await page.screenshot({ path: 'shot.png' });`
@@ -42,8 +42,8 @@ Tools for browser automation, headless browsing, web scraping, and anti-detectio
 ## playwright-extra-plugin-stealth
 
 - **Package**: `npm install playwright-extra-plugin-stealth`
-- **Purpose**: Stealth plugin that patches Playwright to avoid bot detection by websites
-- **Use when**: Target websites detect and block automated browsers; you need to appear as a real user
+- **Purpose**: Stealth plugin that patches Playwright to avoid bot detection by sites
+- **Use when**: Target sites detect and block automated browsers; you need to appear as a real user
 - **Quick start**:
   - `const StealthPlugin = require('playwright-extra-plugin-stealth');`
   - `chromium.use(StealthPlugin());`
@@ -92,7 +92,7 @@ Tools for browser automation, headless browsing, web scraping, and anti-detectio
 
 - **Package**: `npm install puppeteer-extra-plugin-stealth`
 - **Purpose**: Stealth plugin that patches Puppeteer to evade bot detection
-- **Use when**: Websites detect Puppeteer as a bot; you need to pass automation checks
+- **Use when**: sites detect Puppeteer as a bot; you need to pass automation checks
 - **Quick start**:
   - `const StealthPlugin = require('puppeteer-extra-plugin-stealth');`
   - `puppeteer.use(StealthPlugin());`

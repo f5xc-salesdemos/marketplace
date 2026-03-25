@@ -25,7 +25,7 @@ You do **NOT** have `Edit` or `Write`. You are read-only.
 
 ## Core Facts
 
-- **Source repo**: `f5xc-salesdemos/devcontainer`
+- **Source repository**: `f5xc-salesdemos/devcontainer`
 - **Container image**: `ghcr.io/f5xc-salesdemos/devcontainer:latest`
 - **Build fingerprint**: `/etc/devcontainer-version`
 - **Runtime user**: `vscode`
@@ -44,7 +44,7 @@ existential question:
 cat /etc/devcontainer-version
 ```
 
-Extract: BUILD_COMMIT, BUILD_DATE, IMAGE, REPO
+Extract: BUILD_COMMIT, BUILD_DATE, IMAGE, repository
 
 #### Step 2 — Fetch birth commit details
 
@@ -83,7 +83,7 @@ Combine all data into a grounded identity response. Example format:
 
 ### Protocol: GENEALOGY
 
-When asked about history, evolution, recent changes, git log, or PRs:
+When asked about history, evolution, recent changes, Git log, or PRs:
 
 #### Step 1 — Recent commits
 
@@ -142,7 +142,7 @@ ls ~/.claude/plugins/cache/f5xc-salesdemos-marketplace/
 
 #### Step 4 — Config drift detection
 
-Compare runtime config against source repo (via GitHub API, NOT local clone):
+Compare runtime config against source repository (via GitHub API, NOT local clone):
 
 ```bash
 # Fetch source settings.json from GitHub
@@ -192,7 +192,7 @@ diff /etc/claude-code/CLAUDE.md /tmp/source-managed-claude.md || true
 
 ### Source-to-Runtime Map
 
-| What                     | Source (repo)                      | Runtime (container)                     |
+| What                     | Source (repository)                | Runtime (container)                     |
 | ------------------------ | ---------------------------------- | --------------------------------------- |
 | OS packages & tools      | `Dockerfile`                       | `/` filesystem                          |
 | Managed policy CLAUDE.md | `claude-config/CLAUDE.md`          | `/etc/claude-code/CLAUDE.md`            |
@@ -206,7 +206,7 @@ diff /etc/claude-code/CLAUDE.md /tmp/source-managed-claude.md || true
 
 All filesystem changes are lost on container restart. When changes need
 to persist, they must be committed to the `f5xc-salesdemos/devcontainer`
-repo (via GitHub issue or the `container-maintainer` agent).
+repository (via GitHub issue or the `container-maintainer` agent).
 
 ### Build-to-Reincarnation Cycle
 
@@ -228,6 +228,6 @@ repo (via GitHub issue or the `container-maintainer` agent).
 
 - **Always fetch live data** — never return static/cached answers
 - **Always cite sources** — include commit SHAs, dates, author names
-- **Use `gh api`** — never assume the devcontainer repo is cloned locally
+- **Use `gh api`** — never assume the devcontainer repository is cloned locally
 - **Report clearly** — structured output with headers and tables
 - **Read-only** — you cannot modify files; report findings for others to act on

@@ -29,7 +29,7 @@
 ## ngrep
 
 - **Package**: `ngrep` via apt
-- **Purpose**: Network grep for searching packet payloads with regex patterns
+- **Purpose**: Network grep for searching packet payloads with regular expression patterns
 - **Use when**: Searching for strings in network traffic, monitoring HTTP requests in real time, quick payload inspection
 - **Quick start**:
   - `sudo ngrep -d eth0 'GET|POST' port 80`
@@ -242,7 +242,7 @@
 - **Auth**: Requires root or `CAP_NET_RAW` capability
 - **Docs**: `man jnettop`
 
-## curl
+## cURL
 
 - **Package**: `curl` via apt
 - **Purpose**: Transfer data from or to a server using HTTP, HTTPS, FTP, and many other protocols

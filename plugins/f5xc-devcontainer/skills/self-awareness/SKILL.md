@@ -33,7 +33,7 @@ Wait for the agent's response and relay it directly to the user.
 - "who are you" / "what are you" / "where do you come from"
 - "what version" / "when were you born" / "what build"
 - "self-diagnosis" / "health check" / "self-test"
-- "what changed recently" / "show me the git log"
+- "what changed recently" / "show me the Git log"
 - "who built this" / "who are the contributors"
 - "what's your source" / "show me your blueprint"
 - Any existential or introspective question about the container

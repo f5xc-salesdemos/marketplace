@@ -7,7 +7,7 @@ Tools for document conversion, presentations, image processing, media handling, 
 ## markitdown
 
 - **Package**: `pip install markitdown` / `npm install markitdown`
-- **Purpose**: Convert documents (docx, pdf, pptx, html, xlsx, images) to Markdown
+- **Purpose**: Convert documents (docx, PDF, pptx, HTML, xlsx, images) to Markdown
 - **Use when**: You need to extract text content from office documents or PDFs into Markdown format
 - **Quick start**:
   - `markitdown document.docx > output.md`
@@ -118,7 +118,7 @@ Tools for document conversion, presentations, image processing, media handling, 
 
 - **Package**: `apt install qrencode`
 - **Purpose**: Generate QR codes from text, URLs, or data
-- **Use when**: You need to create QR codes for URLs, contact info, WiFi credentials, or any text data
+- **Use when**: You need to create QR codes for URLs, contact info, Wi-Fi credentials, or any text data
 - **Quick start**:
   - `qrencode -o qr.png 'https://example.com'`
   - `qrencode -t SVG -o qr.svg 'Hello World'`
@@ -143,7 +143,7 @@ Tools for document conversion, presentations, image processing, media handling, 
 ## yt-dlp
 
 - **Package**: Manual download — `curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && chmod +x /usr/local/bin/yt-dlp`
-- **Purpose**: Download video and audio from YouTube and hundreds of other websites
+- **Purpose**: Download video and audio from YouTube and hundreds of other sites
 - **Use when**: You need to download videos, extract audio, or fetch video metadata from web sources
 - **Quick start**:
   - `yt-dlp 'https://www.youtube.com/watch?v=VIDEO_ID'`
