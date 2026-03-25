@@ -94,7 +94,7 @@
 
 - **Package**: Manual download
 - **Purpose**: Auto-generate documentation from Terraform modules
-- **Use when**: Generating input/output tables for modules, keeping README in sync with variables, CI documentation checks
+- **Use when**: Generating input/output tables for modules, keeping readme in sync with variables, CI documentation checks
 - **Quick start**:
   - `terraform-docs markdown table .`
   - `terraform-docs markdown table --output-file README.md .`
@@ -114,7 +114,7 @@
 - **Auth**: None
 - **Docs**: `tflint --help` or <https://github.com/terraform-linters/tflint>
 
-## ansible
+## Ansible
 
 - **Package**: `ansible` via pip
 - **Purpose**: Agentless IT automation for configuration management, application deployment, and orchestration
@@ -134,7 +134,7 @@
 - **Quick start**:
   - `ansible-lint site.yml`
   - `ansible-lint -p roles/`
-  - `ansible-lint --write site.yml` (auto-fix)
+  - `ansible-lint --write site.yml` (autofix)
 - **Auth**: None
 - **Docs**: `ansible-lint --help` or <https://ansible.readthedocs.io/projects/lint/>
 

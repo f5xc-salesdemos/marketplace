@@ -34,7 +34,7 @@ Wait for the agent's response and relay it directly to the user.
 ## When to activate
 
 - "which tool should I use to..."
-- "how do I [send email / scan a website / capture packets / deploy to AWS / ...]"
+- "how do I [send email / scan a site / capture packets / deploy to AWS / ...]"
 - "is [tool-name] installed?"
 - "what CLI can I use to..."
 - Any task requiring a command-line tool decision

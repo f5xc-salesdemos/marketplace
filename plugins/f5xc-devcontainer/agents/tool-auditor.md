@@ -50,7 +50,7 @@ Parse the Dockerfile to build a list of all installed tools by method:
 - **gem**: Extract gem names from `gem install` lines
 - **Manual downloads**: Extract tool names from `curl`/`wget` download
   commands (look for binary names being moved to `/usr/local/bin/` or `/opt/`)
-- **git clone**: Extract repo names from `git clone` commands
+- **Git clone**: Extract repository names from `git clone` commands
 - **brew**: Extract formula names from `brew install` lines
 - **luarocks**: Extract rock names from `luarocks install` lines
 - **R**: Extract package names from `Rscript -e "install.packages()"` lines
