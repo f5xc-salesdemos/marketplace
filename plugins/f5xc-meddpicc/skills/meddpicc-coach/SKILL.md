@@ -35,7 +35,7 @@ eight elements of the MEDDPICC framework.
 ## Framework Reference
 
 For detailed definitions, discovery questions, role responsibilities,
-stage-gate criteria, and anti-pattern remediation, load the reference
+stage-gate criteria, and antipattern remediation, load the reference
 files in this skill's `references/` directory:
 
 - **[meddpicc-framework.md](references/meddpicc-framework.md)** —

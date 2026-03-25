@@ -104,8 +104,8 @@ Every response must follow this structure:
 | - | ------ | ----- | -------- | ---------------- |
 | 1 | | | | |
 
-### Anti-Patterns Detected
-[List any MEDDPICC anti-patterns observed in the evidence]
+### Antipatterns Detected
+[List any MEDDPICC antipatterns observed in the evidence]
 
 ### Data Gaps
 [List information that was not available for this analysis]
