@@ -47,7 +47,7 @@ files in this skill's `references/` directory:
 - **[deal-stages.md](references/deal-stages.md)** — stage-gate
   criteria: what must be true before advancing
 - **[anti-patterns.md](references/anti-patterns.md)** — common
-  failure modes and evidence-based fixes
+  failure modes and evidence-based remediation
 
 ## Coaching Behavior
 
@@ -64,7 +64,7 @@ When coaching on MEDDPICC:
 - Ask what evidence exists for each relevant element
 - Identify gaps and recommend specific next actions with owners
 - Suggest discovery questions from the reference library
-- Flag anti-patterns when you recognize them
+- Flag antipatterns when you recognize them
 
 ### For account team alignment
 

@@ -52,7 +52,7 @@ The plugin includes comprehensive reference material:
 - **Discovery Questions** — field-tested questions for every element
 - **Roles & Responsibilities** — RACI ownership by team role
 - **Deal Stage Gates** — what must be true before advancing
-- **Anti-Patterns** — common failure modes and fixes
+- **Antipatterns** — common failure modes and fixes
 - **Scoring Rubric** — objective 0–3 scoring criteria
 - **Review Templates** — weekly inspection question sets
 - **MAP Templates** — customer-facing action plan structure

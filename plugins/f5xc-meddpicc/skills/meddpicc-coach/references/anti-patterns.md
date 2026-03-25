@@ -1,4 +1,4 @@
-# MEDDPICC Anti-Patterns
+# MEDDPICC Antipatterns
 
 Common failure modes and evidence-based fixes. Recognize these
 patterns early to prevent deal slippage, false forecasts, and
@@ -6,7 +6,7 @@ wasted cycles.
 
 ---
 
-## Anti-Pattern 1: "We have a champion" (but they won't act)
+## Antipattern 1: "We have a champion" (but they won't act)
 
 **Symptom:** You call someone a champion, but they haven't introduced
 you to the EB, shared internal information, or taken any concrete
@@ -25,7 +25,7 @@ A champion has power, a personal win, and takes risks for you.
 
 ---
 
-## Anti-Pattern 2: POV without success criteria
+## Antipattern 2: POV without success criteria
 
 **Symptom:** A proof-of-value or pilot starts without written exit
 criteria. It runs indefinitely, consuming SE resources without
@@ -44,7 +44,7 @@ proof to Decision Criteria and Metrics.
 
 ---
 
-## Anti-Pattern 3: Decision Process unknown until the end
+## Antipattern 3: Decision Process unknown until the end
 
 **Symptom:** You learn about procurement gates, security reviews,
 or executive approvals only after submitting a proposal — causing
@@ -62,7 +62,7 @@ or accepting vague answers like "it should be straightforward."
 
 ---
 
-## Anti-Pattern 4: Paper Process starts after the proposal
+## Antipattern 4: Paper Process starts after the proposal
 
 **Symptom:** Legal, security, and procurement work begins only after
 the buyer says "yes" — adding weeks of delay to close.
@@ -80,7 +80,7 @@ instead of a parallel workstream.
 
 ---
 
-## Anti-Pattern 5: Vague Metrics
+## Antipattern 5: Vague Metrics
 
 **Symptom:** Metrics like "improve security" or "reduce costs"
 with no baseline, target, or measurement method.
@@ -98,7 +98,7 @@ quantification. Seller-invented metrics instead of buyer-owned ones.
 
 ---
 
-## Anti-Pattern 6: Checkbox MEDDPICC
+## Antipattern 6: Checkbox MEDDPICC
 
 **Symptom:** MEDDPICC fields are filled in CRM but contain
 assumptions, not evidence. "Champion: VP of Engineering" with no
@@ -118,7 +118,7 @@ of a deal execution system.
 
 ---
 
-## Anti-Pattern 7: AE-only MEDDPICC
+## Antipattern 7: AE-only MEDDPICC
 
 **Symptom:** Only the AE updates MEDDPICC. SE, CSM, and other team
 members don't contribute or don't have visibility.
@@ -136,7 +136,7 @@ a shared deal truth system.
 
 ---
 
-## Anti-Pattern 8: No competitive strategy
+## Antipattern 8: No competitive strategy
 
 **Symptom:** "We're the only ones they're looking at" or "I don't
 think they're talking to anyone else" — without evidence.
@@ -155,7 +155,7 @@ the customer's first answer without probing.
 
 ---
 
-## Anti-Pattern 9: EB engagement delegated to champion
+## Antipattern 9: EB engagement delegated to champion
 
 **Symptom:** You've never met the Economic Buyer directly. All
 communication goes through your champion or another contact.
@@ -174,7 +174,7 @@ champion).
 
 ---
 
-## Anti-Pattern 10: Feature-tour POV
+## Antipattern 10: Feature-tour POV
 
 **Symptom:** The proof-of-value is a feature demonstration, not
 an outcome-based proof tied to the buyer's Metrics and Decision

@@ -83,7 +83,7 @@ options — technical, business, operational, and commercial.
 **Evidence required:**
 
 - Written list of evaluation criteria from the customer
-- Priority ranking (must-have vs. nice-to-have)
+- Priority ranking (must have vs. nice to have)
 - Your competitive position on each criterion
 - Criteria influence actions taken or planned
 

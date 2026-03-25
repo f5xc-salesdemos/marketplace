@@ -105,4 +105,4 @@ After presenting the scorecard:
 1. Highlight the single most critical gap
 2. Suggest specific discovery questions to close the top gaps
 3. Recommend which team member should own each action
-4. Flag any anti-patterns you observe
+4. Flag any antipatterns you observe

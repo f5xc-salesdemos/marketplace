@@ -49,7 +49,7 @@ throughout the deal cycle — not just in initial discovery.
 - "What are the top 3 requirements you'll use to select a solution?"
 - "What would disqualify a vendor?"
 - "How are you weighting technical vs. business vs. commercial criteria?"
-- "Are there any must-have requirements that are non-negotiable?"
+- "Are there any must have requirements that are non-negotiable?"
 - "Who defined these criteria, and are all stakeholders aligned?"
 
 **Influencing criteria:**
