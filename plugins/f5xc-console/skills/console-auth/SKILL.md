@@ -3,9 +3,10 @@ name: console-auth
 description: >-
   Azure SSO authentication for the F5 Distributed Cloud console.
   Handles both cached sessions (single-click re-login) and full
-  MFA flow (username → password → DUO push). Use when the user
-  says "log in", "authenticate", "sign in to the console", or
-  when any console workflow requires an active session.
+  MFA flow (username → password → DUO verified push). Use when
+  the user says "log in", "authenticate", "sign in to the
+  console", or when any console workflow requires an active
+  session.
 user-invocable: false
 ---
 
@@ -14,17 +15,17 @@ user-invocable: false
 Authenticate to the F5 Distributed Cloud console using Azure
 SSO. Supports two modes automatically detected at runtime:
 
-- **Cached session** — user previously selected "remember this
-  device"; clicking "Sign in with Azure" auto-completes login
-- **Full MFA** — username entry, password entry, DUO push
-  notification, "Stay signed in?" confirmation
+- **Cached session** — user previously selected "Stay signed
+  in: Yes"; clicking "Sign in with Azure" auto-completes login
+- **Full MFA** — username entry, password entry, DUO verified
+  push (3-digit code), "Stay signed in?" confirmation
 
 ## Environment Variables
 
 | Variable | Required | Default | Purpose |
 | ---------- | ---------- | --------- | --------- |
 | `F5XC_API_URL` | No | `https://f5-amer-ent.console.ves.volterra.io` | Tenant URL |
-| `F5XC_SSO_USER` | Full MFA only | — | Azure AD email |
+| `F5XC_USERNAME` | Full MFA only | — | Azure AD email |
 | `F5XC_CONSOLE_PASSWORD` | Full MFA only | — | Azure AD password |
 
 ## Prerequisites
@@ -46,12 +47,16 @@ Derive the login URL: `${F5XC_API_URL}/web/login`
 
 Use `take_snapshot` on the current browser page.
 
-- **Already authenticated** — URL contains `/web/workspaces`
-  or snapshot shows workspace elements → skip auth, report
-  success immediately
-- **Login page visible** — URL contains `/web/login` or
-  snapshot shows "Sign in with Azure" → proceed to Step 3
+- **Already authenticated** — URL contains `/web/home` or
+  `/web/workspaces` or page title is "F5 Distributed Cloud
+  Console" with workspace elements visible → skip auth,
+  report success immediately
+- **Login page visible** — URL contains `login.ves.volterra.io`
+  or snapshot shows "Sign in with Azure" → proceed to Step 3
 - **Other page** — navigate to the login URL, then proceed
+
+Note: Navigating to `${F5XC_API_URL}/web/login` redirects to
+`login.ves.volterra.io` which hosts the SSO selection page.
 
 ### Step 3: Click "Sign in with Azure"
 
@@ -59,11 +64,12 @@ Use `take_snapshot` on the current browser page.
 take_snapshot()
 ```
 
-Find the Azure SSO button by text content matching
-"Sign in with Azure" or "Sign in with SSO". Click it:
+Find the Azure SSO button — it appears as a link with text
+"Sign In with Azure" on the `login.ves.volterra.io` page.
+Click it:
 
 ```
-click(uid=<azure-sso-button-uid>)
+click(uid=<sign-in-with-azure-link-uid>)
 ```
 
 ### Step 4: Mode detection
@@ -71,67 +77,101 @@ click(uid=<azure-sso-button-uid>)
 Wait up to 15 seconds for one of these outcomes:
 
 ```
-wait_for(text=["Pick an account", "Sign in to your account",
-               "Enter password", "web/workspaces"],
+wait_for(text=["Pick an account", "Sign in",
+               "Enter your email", "web/home"],
          timeout=15000)
 take_snapshot()
 ```
 
 Determine the path:
 
-- **URL contains `/web/workspaces`** → cached session
-  succeeded. Jump to Step 8 (verification).
+- **URL contains `/web/home`** → cached session succeeded.
+  Jump to Step 9 (verification).
 - **"Pick an account" visible** → click the account matching
-  `F5XC_SSO_USER`, then monitor for auto-completion or MFA.
-- **Email/username input visible** → full MFA flow. Continue.
+  `F5XC_USERNAME`, then monitor for auto-completion or MFA.
+- **Email/username input visible** ("Enter your email, phone,
+  or Skype") → full MFA flow. Continue.
 
 ### Step 5: Username entry (Full MFA)
 
+Azure AD uses a two-screen login. First screen: email.
+
 ```
 take_snapshot()
-fill(uid=<email-input-uid>, value="${F5XC_SSO_USER}")
+fill(uid=<email-input-uid>, value="${F5XC_USERNAME}")
 click(uid=<next-button-uid>)
 wait_for(text=["Enter password", "Password"], timeout=10000)
 ```
 
 ### Step 6: Password entry (Full MFA)
 
+Second screen: password.
+
 ```
 take_snapshot()
 fill(uid=<password-input-uid>, value="${F5XC_CONSOLE_PASSWORD}")
 click(uid=<signin-button-uid>)
-wait_for(text=["Approve sign-in request", "Verify your identity",
-               "Stay signed in", "web/workspaces"], timeout=10000)
+wait_for(text=["Verification Required", "Approve sign-in request",
+               "Stay signed in", "web/home"], timeout=10000)
 ```
 
-### Step 7: DUO MFA and "Stay signed in"
+### Step 7: DUO redirect (Full MFA)
 
-**If DUO push screen is shown** ("Approve sign-in request" or
-"Verify your identity"):
+After password entry, Azure shows a "Verification Required"
+screen with text "You will be redirected to DUO to verify
+your identity" and a **Continue** button.
+
+```
+take_snapshot()
+click(uid=<continue-button-uid>)
+wait_for(text=["Enter code in Duo Mobile", "Check your phone",
+               "Duo Push"], timeout=15000)
+```
+
+### Step 8: DUO Verified Push
+
+DUO uses a **verified push** — it displays a 3-digit
+verification code on screen that the user must enter in the
+Duo Mobile app on their phone.
+
+```
+take_snapshot()
+```
+
+Extract the 3-digit code from the snapshot text (it appears
+as a standalone number like "403", "127", etc.).
 
 Report to the operator:
 
-> **MFA push sent. Please approve the DUO notification on your
-> phone.**
+> **DUO verification code: [CODE]**
+>
+> Enter this code in the Duo Mobile app on your phone.
 
-Then wait for the user to approve:
+Then wait for approval:
 
 ```
-wait_for(text=["Stay signed in", "web/workspaces"], timeout=60000)
+wait_for(text=["Stay signed in", "web/home"], timeout=60000)
 ```
 
-If timeout expires, report: "MFA approval timed out. Please
-try again."
+If timeout expires, the DUO push timed out. Take a snapshot
+to check for a "Try again" button. If found, click it and
+repeat this step (extract new code, report to operator).
 
-**If "Stay signed in?" is shown:**
+### Step 8b: "Stay signed in?"
+
+After DUO approval, Azure shows "Stay signed in?" prompt.
 
 ```
 take_snapshot()
 click(uid=<yes-button-uid>)   # Click "Yes" to persist session
-wait_for(text=["web/workspaces"], timeout=15000)
+wait_for(text=["F5 Distributed Cloud", "Welcome", "Home"],
+         timeout=30000)
 ```
 
-### Step 8: Verification
+Note: The console is a heavy SPA that may take 15-30 seconds
+to fully load after authentication completes.
+
+### Step 9: Verification
 
 ```
 take_snapshot()
@@ -139,18 +179,20 @@ take_snapshot()
 
 Confirm success:
 
-- URL contains `/web/workspaces` or a known console path
-- Snapshot contains workspace/tenant elements (navigation
-  sidebar, user avatar, workspace name)
+- URL contains `/web/home` or a known console path
+- Page title is "F5 Distributed Cloud Console"
+- Snapshot contains workspace elements (e.g., "Welcome to
+  the F5 Distributed Cloud Console", "Common workspaces",
+  "Web App & API Protection")
 
 Report structured result:
 
 ```
 ## Console Authentication: SUCCESS
 - Tenant: ${F5XC_API_URL}
-- User: ${F5XC_SSO_USER}
+- User: ${F5XC_USERNAME}
 - Mode: Cached Session | Full MFA
-- Workspace: <detected workspace name>
+- Page: Home
 ```
 
 ## Error Handling
@@ -159,11 +201,12 @@ Report structured result:
 | --------- | ----------- | -------- |
 | VPN not connected | Navigation timeout or DNS error | Report: "Cannot reach tenant. Check VPN." |
 | Invalid credentials | "Wrong password" or "Account doesn't exist" | Report error. Do NOT retry (lockout risk). |
-| MFA timeout | `wait_for` exceeds 60s on DUO screen | Report: "MFA approval timed out." |
+| DUO timeout | `wait_for` exceeds 60s on DUO screen | Click "Try again" if available, relay new code. |
 | Account locked | "Your account has been locked" | Report immediately. Do NOT retry. |
 | Conditional Access | "You cannot access this" | Report: "Conditional Access policy blocked." |
-| Session expired | Redirect to `/web/login` mid-workflow | Re-invoke this auth flow automatically. |
+| Session expired | Redirect to `login.ves.volterra.io` mid-workflow | Re-invoke this auth flow automatically. |
 | Azure AD outage | "Something went wrong" page | Report: "Azure AD service error." |
+| Console load timeout | SPA stuck loading after auth | Wait up to 30s, then retry navigation to `/web/home`. |
 
 ## Security
 

@@ -19,13 +19,13 @@ Check the following indicators in order:
 
 **Active session (no action needed):**
 
-- URL contains `/web/workspaces` or `/web/namespaces/`
+- URL contains `/web/home` or `/web/namespaces/`
 - Snapshot contains navigation sidebar elements
 - Snapshot contains user account menu or avatar
 
 **Expired session (re-auth needed):**
 
-- URL contains `/web/login`
+- URL contains `/web/login` or `login.ves.volterra.io`
 - Snapshot contains "Sign in" or "Session Expired" text
 - Modal overlay with "Sign in again" or "Your session has
   expired"

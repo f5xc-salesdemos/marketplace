@@ -16,7 +16,7 @@ navigation, and a foundation for workflow automation.
 | Variable | Required | Default | Purpose |
 | ---------- | ---------- | --------- | --------- |
 | `F5XC_API_URL` | No | `https://f5-amer-ent.console.ves.volterra.io` | Tenant console URL |
-| `F5XC_SSO_USER` | Full MFA only | — | Azure AD email address |
+| `F5XC_USERNAME` | Full MFA only | — | Azure AD email address |
 | `F5XC_CONSOLE_PASSWORD` | Full MFA only | — | Azure AD password |
 | `F5XC_NAMESPACE` | No | — | Default namespace for navigation |
 
@@ -54,9 +54,10 @@ When no cached session exists:
 
 1. Navigate to login page
 2. Click "Sign in with Azure"
-3. Enter username (from `F5XC_SSO_USER`)
+3. Enter username (from `F5XC_USERNAME`)
 4. Enter password (from `F5XC_CONSOLE_PASSWORD`)
-5. DUO MFA push — plugin pauses and prompts user to approve
+5. DUO verified push — plugin reads the 3-digit code from
+   screen and relays it to the user to enter in Duo Mobile
 6. "Stay signed in?" — plugin clicks Yes for future caching
 7. Console loads
 

@@ -1,89 +1,108 @@
 # Azure SSO Flow — MCP Tool Sequences
 
 Detailed Chrome DevTools MCP tool call sequences for each
-authentication path. The `console-auth` skill references
-this file for implementation details.
+authentication path. Validated against the f5-amer-ent tenant
+on 2026-03-26.
 
 ## Path A: Cached Session (Single-Click)
 
-Pre-condition: User previously authenticated and selected
-"Remember this device" / "Stay signed in: Yes".
+Precondition: User previously authenticated and selected
+"Stay signed in: Yes".
 
 ```
 1. navigate_page(url="${F5XC_API_URL}/web/login")
-2. wait_for(text=["Sign in with Azure"])
+   # Redirects to login.ves.volterra.io
+2. wait_for(text=["Sign In with Azure"])
 3. take_snapshot()
-4. click(uid=<azure-sso-button>)          # Text: "Sign in with Azure"
-5. wait_for(text=["web/workspaces"], timeout=15000)
-6. take_snapshot()                          # Verify console loaded
+4. click(uid=<sign-in-with-azure-link>)
+5. wait_for(text=["web/home", "F5 Distributed Cloud"],
+            timeout=15000)
+6. take_snapshot()   # Verify console loaded
 ```
 
-Expected duration: 3–8 seconds.
+Expected duration: 3-10 seconds.
 
-## Path B: Account Picker → Cached Session
+## Path B: Account Picker then Cached Session
 
-Pre-condition: Multiple Azure AD accounts cached in browser.
+Precondition: Multiple Azure AD accounts cached in browser.
 
 ```
 1. navigate_page(url="${F5XC_API_URL}/web/login")
-2. wait_for(text=["Sign in with Azure"])
+2. wait_for(text=["Sign In with Azure"])
 3. take_snapshot()
-4. click(uid=<azure-sso-button>)
+4. click(uid=<sign-in-with-azure-link>)
 5. wait_for(text=["Pick an account"], timeout=15000)
 6. take_snapshot()
-7. click(uid=<account-matching-F5XC_SSO_USER>)  # Match by email text
-8. wait_for(text=["web/workspaces", "Enter password"], timeout=15000)
-   # If workspaces → done. If password → continue to Path C Step 6.
+7. click(uid=<account-matching-F5XC_USERNAME>)
+8. wait_for(text=["web/home", "Enter password"], timeout=15000)
+   # If /web/home -> done. If password -> continue to Path C
 9. take_snapshot()
 ```
 
 ## Path C: Full MFA Flow
 
-Pre-condition: No cached session or session expired.
+Precondition: No cached session or session expired. Validated
+against f5-amer-ent tenant with Azure AD and DUO verified push.
 
 ```
  1. navigate_page(url="${F5XC_API_URL}/web/login")
- 2. wait_for(text=["Sign in with Azure"])
+    # Redirects to login.ves.volterra.io with SSO options
+ 2. wait_for(text=["Sign In with Azure"])
  3. take_snapshot()
- 4. click(uid=<azure-sso-button>)
+ 4. click(uid=<sign-in-with-azure-link>)
 
- # Username screen
+ # Username screen (login.microsoftonline.com)
  5. wait_for(text=["Sign in", "Enter your email"], timeout=15000)
  6. take_snapshot()
- 7. fill(uid=<email-input>, value="${F5XC_SSO_USER}")
- 8. click(uid=<next-button>)                # Text: "Next"
+ 7. fill(uid=<email-textbox>, value="${F5XC_USERNAME}")
+ 8. click(uid=<next-button>)
 
  # Password screen
  9. wait_for(text=["Enter password"], timeout=10000)
 10. take_snapshot()
-11. fill(uid=<password-input>, value="${F5XC_CONSOLE_PASSWORD}")
-12. click(uid=<signin-button>)              # Text: "Sign in"
+11. fill(uid=<password-textbox>, value="${F5XC_CONSOLE_PASSWORD}")
+12. click(uid=<sign-in-button>)
 
- # DUO MFA
-13. wait_for(text=["Approve sign-in request", "Verify your identity",
-                   "Stay signed in"], timeout=10000)
+ # DUO redirect screen
+ # Azure shows "Verification Required" with a Continue button
+ # BEFORE redirecting to DUO
+13. wait_for(text=["Verification Required"], timeout=10000)
 14. take_snapshot()
-    # If DUO screen: notify operator, then wait
-15. wait_for(text=["Stay signed in", "web/workspaces"], timeout=60000)
+15. click(uid=<continue-button>)
+
+ # DUO verified push screen (duosecurity.com)
+ # DUO displays a 3-digit code the user must enter in
+ # the Duo Mobile app — this is NOT a simple push approval
+16. wait_for(text=["Enter code in Duo Mobile"], timeout=15000)
+17. take_snapshot()
+    # Extract the 3-digit code from snapshot text
+    # Report to operator: "DUO verification code: <CODE>"
+18. wait_for(text=["Stay signed in"], timeout=60000)
+    # If timeout: look for "Try again" button, click it,
+    # extract new code, report again
 
  # Stay signed in
-16. take_snapshot()
-17. click(uid=<yes-button>)                 # Text: "Yes"
-18. wait_for(text=["web/workspaces"], timeout=15000)
-19. take_snapshot()                          # Verify console loaded
+19. take_snapshot()
+20. click(uid=<yes-button>)
+
+ # Console loading (heavy SPA, may take 15-30 seconds)
+21. wait_for(text=["F5 Distributed Cloud", "Welcome",
+                   "Common workspaces"], timeout=30000)
+22. take_snapshot()   # Verify console loaded
 ```
 
-Expected duration: 15–90 seconds (depends on MFA approval speed).
+Expected duration: 30-90 seconds (depends on DUO approval).
 
-## URL Patterns for Detection
+## URL Patterns Observed
 
 | URL Pattern | Meaning |
 | ------------- | --------- |
-| `*/web/login*` | F5 XC login page |
-| `*/web/workspaces*` | Console loaded (authenticated) |
-| `login.microsoftonline.com*` | Azure AD login screens |
-| `*duosecurity.com*` | DUO MFA challenge |
-| `*/kmsi*` | "Keep me signed in" prompt |
+| `login.ves.volterra.io/auth/realms/*` | Volterra SSO selection page |
+| `login.microsoftonline.com/*` | Azure AD login (username/password) |
+| `login.microsoftonline.com/*/login` | Azure AD post-password (DUO redirect) |
+| `api-*.duosecurity.com/frame/*` | DUO MFA challenge |
+| `login.microsoftonline.com/common/federation/*` | "Stay signed in" prompt |
+| `f5-amer-ent.console.ves.volterra.io/web/home*` | Console loaded (authenticated) |
 
 ## Element Identification Strategy
 
@@ -91,10 +110,22 @@ Always use `take_snapshot()` before interacting. Find
 elements using this priority:
 
 1. **Text content** — most reliable for auth flows since
-   Azure AD pages use standard button text ("Next",
-   "Sign in", "Yes", "No")
-2. **Input type** — `type="email"` for username,
-   `type="password"` for password
-3. **aria-label** — backup for buttons without visible text
-4. **Placeholder text** — "Email, phone, or Skype" for
-   the username field on Azure AD
+   each screen uses standard text ("Next", "Sign in", "Yes")
+2. **Input type** — textbox with description containing
+   "email" for username, "password" for password
+3. **Link text** — "Sign In with Azure" is a link, not a
+   button, on the Volterra login page
+4. **Button text** — "Next", "Sign in", "Continue", "Yes",
+   "Try again"
+
+## Key Observations from Live Testing
+
+- The Volterra login page (`login.ves.volterra.io`) hosts the
+  SSO provider selection, not `${F5XC_API_URL}/web/login`
+- "Sign In with Azure" is a link element, not a button
+- Azure AD shows a "Verification Required" intermediate screen
+  with a "Continue" button before redirecting to DUO
+- DUO uses verified push (3-digit code entry) not simple push
+- The console SPA loads at `/web/home` (not `/web/workspaces`)
+  and can take 15-30 seconds for the initial render
+- The page reports as `busy` during SPA initialization
