@@ -80,7 +80,7 @@ To verify a token is valid and has appropriate permissions:
 
 - Tokens must come from environment variables only
 - Never echo or log token values in output
-- When displaying curl commands, use `$F5XC_API_TOKEN`
+- When displaying cURL commands, use `$F5XC_API_TOKEN`
   placeholder, never the actual value
 - Clean up temporary files after validation
 

@@ -136,7 +136,18 @@
       "category": "productivity",
       "homepage": "https://github.com/f5xc-salesdemos/marketplace/tree/main/plugins/f5xc-platform",
       "license": "Apache-2.0",
-      "keywords": ["console", "browser", "automation", "azure-sso", "mcp", "chrome-devtools", "f5xc", "api", "rest", "platform"],
+      "keywords": [
+        "console",
+        "browser",
+        "automation",
+        "azure-sso",
+        "mcp",
+        "chrome-devtools",
+        "f5xc",
+        "api",
+        "rest",
+        "platform"
+      ],
       "tags": ["console", "browser", "automation", "f5xc", "api", "platform"],
       "repository": "https://github.com/f5xc-salesdemos/marketplace"
     }
