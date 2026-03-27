@@ -53,7 +53,7 @@ Authorization: APIToken <token-value>
 ```
 
 The token value is a long base64-encoded string. Example
-curl usage:
+cURL usage:
 
 ```bash
 curl -s \

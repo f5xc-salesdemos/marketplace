@@ -1,7 +1,7 @@
 # f5xc-platform
 
 F5 Distributed Cloud platform automation — web console UI
-via Chrome DevTools MCP and REST API management via curl.
+via Chrome DevTools MCP and REST API management via cURL.
 Provides Azure SSO authentication, deterministic console
 navigation, API token management, and a foundation for
 workflow automation across both interfaces.
@@ -46,7 +46,7 @@ workflow automation across both interfaces.
 | Agent | Domain | Purpose |
 | ----- | ------ | ------- |
 | `console-operator` | Console | Autonomous browser automation executor |
-| `api-operator` | API | Autonomous REST API executor (curl + jq) |
+| `api-operator` | API | Autonomous REST API executor (cURL + jq) |
 
 ## Commands
 

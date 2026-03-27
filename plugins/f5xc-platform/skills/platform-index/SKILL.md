@@ -12,7 +12,7 @@ user-invocable: false
 # Platform Index — Top-Level Router
 
 Routes platform management requests to the correct domain:
-**console** (web UI via browser) or **API** (REST via curl).
+**console** (web UI via browser) or **API** (REST via cURL).
 
 ## Routing Logic
 
@@ -27,7 +27,7 @@ based operations via the `console-operator` agent.
 
 ### Route to API (→ `api-index`)
 
-Keywords: "API", "curl", "REST", "token", "programmatic",
+Keywords: "API", "cURL", "REST", "token", "programmatic",
 "JSON", "endpoint", "list via API", "get via API",
 "create via API", "check token", "validate token"
 

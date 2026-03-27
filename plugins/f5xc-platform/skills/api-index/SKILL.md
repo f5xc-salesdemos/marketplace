@@ -42,7 +42,7 @@ autonomously. The main session only receives the result.
 | "list", "get" + resource type | Future api-operations | "List [resource type] in namespace [ns]" |
 | "create" + resource type via API | Future api-operations | "Create [resource type] in namespace [ns]" |
 | "delete" + resource type via API | Future api-operations | "Delete [resource type] in namespace [ns]" |
-| "curl", "API call" + custom | Direct delegation | Pass user's request to agent |
+| "cURL", "API call" + custom | Direct delegation | Pass user's request to agent |
 
 ## How to Route
 
