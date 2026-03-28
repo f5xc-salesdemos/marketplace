@@ -21,19 +21,8 @@
       "category": "productivity",
       "homepage": "https://github.com/f5xc-salesdemos/marketplace/tree/main/plugins/f5xc-docs-tools",
       "license": "Apache-2.0",
-      "keywords": [
-        "mdx",
-        "documentation",
-        "validation",
-        "starlight",
-        "astro"
-      ],
-      "tags": [
-        "docs",
-        "linting",
-        "content-review",
-        "f5xc"
-      ],
+      "keywords": ["mdx", "documentation", "validation", "starlight", "astro"],
+      "tags": ["docs", "linting", "content-review", "f5xc"],
       "repository": "https://github.com/f5xc-salesdemos/marketplace"
     },
     {
@@ -47,25 +36,14 @@
       "category": "productivity",
       "homepage": "https://github.com/f5xc-salesdemos/marketplace/tree/main/plugins/f5xc-sales-engineer",
       "license": "Apache-2.0",
-      "keywords": [
-        "sales-engineer",
-        "demo",
-        "persona",
-        "presentation",
-        "f5xc"
-      ],
-      "tags": [
-        "demo",
-        "sales",
-        "persona",
-        "f5xc"
-      ],
+      "keywords": ["sales-engineer", "demo", "persona", "presentation", "f5xc"],
+      "tags": ["demo", "sales", "persona", "f5xc"],
       "repository": "https://github.com/f5xc-salesdemos/marketplace"
     },
     {
       "name": "f5xc-github-ops",
       "description": "GitHub operations automation — issue-driven development, PR lifecycle, CI polling, post-merge monitoring, verification, rate limit management, and autonomous workflow operations agent",
-      "version": "2.0.2",
+      "version": "2.1.0",
       "author": {
         "name": "f5xc-salesdemos"
       },
@@ -73,20 +51,8 @@
       "category": "productivity",
       "homepage": "https://github.com/f5xc-salesdemos/marketplace/tree/main/plugins/f5xc-github-ops",
       "license": "Apache-2.0",
-      "keywords": [
-        "github-ops",
-        "workflow",
-        "pr",
-        "ci",
-        "rate-limit",
-        "github"
-      ],
-      "tags": [
-        "github-ops",
-        "workflow",
-        "ci",
-        "f5xc"
-      ],
+      "keywords": ["github-ops", "workflow", "pr", "ci", "rate-limit", "github"],
+      "tags": ["github-ops", "workflow", "ci", "f5xc"],
       "repository": "https://github.com/f5xc-salesdemos/marketplace"
     },
     {
@@ -100,20 +66,8 @@
       "category": "productivity",
       "homepage": "https://github.com/f5xc-salesdemos/marketplace/tree/main/plugins/f5xc-docs-pipeline",
       "license": "Apache-2.0",
-      "keywords": [
-        "docs",
-        "pipeline",
-        "astro",
-        "starlight",
-        "content",
-        "authoring"
-      ],
-      "tags": [
-        "docs",
-        "pipeline",
-        "content",
-        "f5xc"
-      ],
+      "keywords": ["docs", "pipeline", "astro", "starlight", "content", "authoring"],
+      "tags": ["docs", "pipeline", "content", "f5xc"],
       "repository": "https://github.com/f5xc-salesdemos/marketplace"
     },
     {
@@ -127,19 +81,8 @@
       "category": "productivity",
       "homepage": "https://github.com/f5xc-salesdemos/marketplace/tree/main/plugins/f5xc-brand",
       "license": "Apache-2.0",
-      "keywords": [
-        "brand",
-        "design-system",
-        "colors",
-        "typography",
-        "accessibility"
-      ],
-      "tags": [
-        "brand",
-        "design",
-        "visual-identity",
-        "f5xc"
-      ],
+      "keywords": ["brand", "design-system", "colors", "typography", "accessibility"],
+      "tags": ["brand", "design", "visual-identity", "f5xc"],
       "repository": "https://github.com/f5xc-salesdemos/marketplace"
     },
     {
@@ -164,13 +107,7 @@
         "mutual-action-plan",
         "f5xc"
       ],
-      "tags": [
-        "sales",
-        "qualification",
-        "deal-management",
-        "forecast",
-        "f5xc"
-      ],
+      "tags": ["sales", "qualification", "deal-management", "forecast", "f5xc"],
       "repository": "https://github.com/f5xc-salesdemos/marketplace"
     },
     {
@@ -184,20 +121,8 @@
       "category": "productivity",
       "homepage": "https://github.com/f5xc-salesdemos/marketplace/tree/main/plugins/f5xc-devcontainer",
       "license": "Apache-2.0",
-      "keywords": [
-        "devcontainer",
-        "tools",
-        "catalog",
-        "cli",
-        "inventory",
-        "container"
-      ],
-      "tags": [
-        "devcontainer",
-        "tools",
-        "catalog",
-        "f5xc"
-      ],
+      "keywords": ["devcontainer", "tools", "catalog", "cli", "inventory", "container"],
+      "tags": ["devcontainer", "tools", "catalog", "f5xc"],
       "repository": "https://github.com/f5xc-salesdemos/marketplace"
     },
     {
@@ -223,14 +148,7 @@
         "rest",
         "platform"
       ],
-      "tags": [
-        "console",
-        "browser",
-        "automation",
-        "f5xc",
-        "api",
-        "platform"
-      ],
+      "tags": ["console", "browser", "automation", "f5xc", "api", "platform"],
       "repository": "https://github.com/f5xc-salesdemos/marketplace"
     }
   ]
