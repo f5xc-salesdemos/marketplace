@@ -299,11 +299,17 @@ to merge — the repo may have no required checks.
 
 ```
 gh pr checks <NUMBER> --required --json bucket \
-  --jq 'map(.bucket) | unique | if . == ["pass"] then "pass"
-  elif any(. == "fail") then "fail" else "pending" end'
+  --jq 'map(.bucket) | unique | map(select(. != "skipping")) |
+  if . == ["pass"] then "pass"
+  elif any(. == "fail") then "fail"
+  elif length == 0 then "pass"
+  else "pending" end'
 ```
 
 Use `--required` to focus on merge-blocking checks only.
+Skipped checks (bucket `skipping`) are filtered out before
+evaluation — they are non-blocking and must not cause the
+poll loop to wait indefinitely.
 
 **Loop rules:**
 
