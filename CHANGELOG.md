@@ -10,6 +10,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+- **f5xc-github-ops** bumped to v2.1.1
+
 - **f5xc-sales-engineer** bumped to v1.0.4
 
 - **f5xc-devcontainer** bumped to v1.1.3

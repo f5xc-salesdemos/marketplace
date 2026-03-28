@@ -63,14 +63,14 @@ gh auth status
 If this fails or does not show "Logged in", return `BLOCKED`.
 Token expiry mid-operation causes cryptic failures — catch it early.
 
-### 2. Remove Stale Git Lock Files
+### 2. Remove Stale Git Lockfiles
 
 ```
 [ -f .git/index.lock ] && rm -f .git/index.lock
 ```
 
-Crashed git processes leave lock files that block all subsequent
-git operations. Safe to remove if no git process is currently running.
+Crashed Git processes leave lockfiles that block all subsequent
+Git operations. Safe to remove if no Git process is currently running.
 
 ### 3. Verify Clean Working Tree
 

@@ -51,7 +51,7 @@ statuses:
 | Status | Meaning | Your Action |
 | ------ | ------- | ----------- |
 | `COMPLETE` | PR merged, post-merge passed, cleanup done | Task is done |
-| `PRE_COMMIT_FAILED` | Lint gate failed before commit | Fix lint errors, re-delegate with same files |
+| `PRE_COMMIT_FAILED` | Lint gate failed before commit | Fix linting errors, re-delegate with same files |
 | `CI_FAILED` | CI checks failed after push | Fix CI errors, re-delegate with `Issue:` and `Branch:` to reuse existing PR |
 | `BLOCKED` | Rate limit, missing CLI, or missing config | Resolve blocker, then re-delegate |
 | `FAILED` | Unrecoverable error (merge conflict, etc.) | Read error details, resolve manually |

@@ -7,14 +7,7 @@
     "url": "https://github.com/f5xc-salesdemos"
   },
   "homepage": "https://github.com/f5xc-salesdemos/marketplace/tree/main/plugins/f5xc-devcontainer",
-  "keywords": [
-    "devcontainer",
-    "tools",
-    "catalog",
-    "cli",
-    "inventory",
-    "container"
-  ],
+  "keywords": ["devcontainer", "tools", "catalog", "cli", "inventory", "container"],
   "license": "Apache-2.0",
   "repository": "https://github.com/f5xc-salesdemos/marketplace"
 }
