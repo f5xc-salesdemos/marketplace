@@ -173,9 +173,9 @@ tracking issue open, suggest pinging upstream maintainers.
 
 ## Worktree Awareness
 
-Claude Code sessions frequently run inside git worktrees for
+Claude Code sessions frequently run inside Git worktrees for
 isolation. The github-ops agent detects worktrees automatically
-during its initialization (Step 2: Detect Worktree). All git
+during its initialization (Step 2: Detect Worktree). All Git
 operations in the agent use worktree-safe path resolution.
 
 When delegating to the agent from a worktree:
