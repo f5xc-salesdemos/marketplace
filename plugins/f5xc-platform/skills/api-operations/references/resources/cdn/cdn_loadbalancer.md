@@ -22,7 +22,7 @@ Required: cdn_origin_pool
 
 - cdn_origin_pool: Origin servers for CDN content
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

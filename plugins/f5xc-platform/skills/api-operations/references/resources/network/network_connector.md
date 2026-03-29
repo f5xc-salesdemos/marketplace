@@ -22,7 +22,7 @@ Required: virtual_network
 
 - virtual_network: Network to connect
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

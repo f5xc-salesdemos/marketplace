@@ -1,4 +1,4 @@
-# Vpm And Node Management
+# VPM And Node Management
 
 Node lifecycle, fleet grouping, and orchestration.
 

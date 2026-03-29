@@ -1,4 +1,4 @@
-# Dns
+# DNS
 
 Authoritative zones and record management.
 

@@ -14,7 +14,7 @@ Domain: managed_kubernetes. Tier: Advanced. Logs: no. Metrics: no.
 | Delete | DELETE | /api/config/namespaces/{ns}/k8s_cluster_roles/{name} |
 | List | GET | /api/config/namespaces/{ns}/k8s_cluster_roles |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

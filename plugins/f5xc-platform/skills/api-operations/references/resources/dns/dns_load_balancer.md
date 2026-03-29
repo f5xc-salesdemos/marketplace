@@ -22,7 +22,7 @@ Required: dns_zone
 
 - dns_zone: Parent zone for DNS records
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

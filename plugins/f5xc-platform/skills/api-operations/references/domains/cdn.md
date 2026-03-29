@@ -1,4 +1,4 @@
-# Cdn
+# CDN
 
 Content delivery and edge caching networks.
 

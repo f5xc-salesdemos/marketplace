@@ -14,7 +14,7 @@ Domain: data_and_privacy_security. Tier: Advanced. Logs: yes. Metrics: no.
 | Delete | DELETE | /api/config/namespaces/{ns}/sensitive_data_policys/{name} |
 | List | GET | /api/config/namespaces/{ns}/sensitive_data_policys |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

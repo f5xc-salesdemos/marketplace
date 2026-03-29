@@ -46,7 +46,7 @@ Optional: service_policy
 }
 ```
 
-## curl Example
+## cURL Example
 
 ```bash
 curl -X POST "$F5XC_API_URL/api/config/namespaces/default/app_firewalls" \

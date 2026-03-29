@@ -14,7 +14,7 @@ Domain: network_security. Tier: Advanced. Logs: yes. Metrics: yes.
 | Delete | DELETE | /api/config/namespaces/{ns}/forward_proxy_policys/{name} |
 | List | GET | /api/config/namespaces/{ns}/forward_proxy_policys |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

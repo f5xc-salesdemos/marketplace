@@ -22,7 +22,7 @@ Optional: api_endpoint
 
 - api_endpoint: Endpoints defined by this API
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

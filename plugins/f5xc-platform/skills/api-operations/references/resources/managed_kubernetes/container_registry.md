@@ -14,7 +14,7 @@ Domain: managed_kubernetes. Tier: Advanced. Logs: no. Metrics: no.
 | Delete | DELETE | /api/config/namespaces/{ns}/container_registrys/{name} |
 | List | GET | /api/config/namespaces/{ns}/container_registrys |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

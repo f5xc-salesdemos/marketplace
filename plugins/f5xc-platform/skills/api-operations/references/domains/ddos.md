@@ -1,4 +1,4 @@
-# Ddos
+# DDoS
 
 Volumetric attack mitigation and traffic scrubbing.
 

@@ -14,7 +14,7 @@ Domain: cloud_infrastructure. Tier: Standard. Logs: no. Metrics: no.
 | Delete | DELETE | /api/config/namespaces/{ns}/cloud_credentialss/{name} |
 | List | GET | /api/config/namespaces/{ns}/cloud_credentialss |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

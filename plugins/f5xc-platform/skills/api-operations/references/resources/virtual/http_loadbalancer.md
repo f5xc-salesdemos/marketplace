@@ -191,7 +191,7 @@ Optional: healthcheck, app_firewall, certificate, rate_limiter, service_policy, 
 | `spec.challenge` | enum | no_challenge, js_challenge, captcha_challenge | no_challenge |
 | `spec.advertising` | enum | advertise_on_public_default_vip, advertise_on_public, advertise_custom, do_not_advertise | advertise_on_public_default_vip |
 
-## curl Example
+## cURL Example
 
 ```bash
 curl -X POST "$F5XC_API_URL/api/config/namespaces/default/http_loadbalancers" \

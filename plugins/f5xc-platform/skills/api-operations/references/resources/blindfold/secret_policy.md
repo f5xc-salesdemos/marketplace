@@ -14,7 +14,7 @@ Domain: blindfold. Tier: Standard. Logs: no. Metrics: no.
 | Delete | DELETE | /api/secret_management/namespaces/{ns}/secret_policys/{name} |
 | List | GET | /api/secret_management/namespaces/{ns}/secret_policys |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

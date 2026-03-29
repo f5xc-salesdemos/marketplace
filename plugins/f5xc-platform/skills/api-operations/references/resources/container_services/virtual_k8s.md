@@ -22,7 +22,7 @@ Optional: workload
 
 - workload: Container workloads in this namespace
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

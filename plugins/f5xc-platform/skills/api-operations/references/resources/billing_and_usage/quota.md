@@ -14,7 +14,7 @@ Domain: billing_and_usage. Tier: Standard. Logs: no. Metrics: no.
 | Delete | DELETE | /api/web/namespaces/{ns}/quotas/{name} |
 | List | GET | /api/web/namespaces/{ns}/quotas |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

@@ -14,7 +14,7 @@ Domain: network_security. Tier: Standard. Logs: yes. Metrics: yes.
 | Delete | DELETE | /api/config/namespaces/{ns}/network_firewalls/{name} |
 | List | GET | /api/config/namespaces/{ns}/network_firewalls |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

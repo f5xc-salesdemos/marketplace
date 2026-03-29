@@ -2,7 +2,7 @@
 name: api-operator
 description: >-
   Autonomous REST API agent for F5 XC platform management.
-  Executes curl + jq sequences for resource CRUD, token
+  Executes cURL + jq sequences for resource CRUD, token
   validation, and configuration operations. Skills MUST
   delegate to this agent — never run large API sequences in
   the main session. This keeps the main session context lean
@@ -90,9 +90,9 @@ curl -s -X METHOD \
    because your output is displayed in the user's terminal
    where others may see it or it may be logged.
 
-   When showing curl commands in your report, always write
+   When showing cURL commands in your report, always write
    the literal string `$F5XC_API_TOKEN` — never the expanded
-   value. Do not use curl `-v` or `--verbose` flags (they
+   value. Do not use cURL `-v` or `--verbose` flags (they
    print auth headers to stderr). If a response body
    contains token values, redact them with `<redacted>`.
 
@@ -112,7 +112,7 @@ curl -s -X METHOD \
    status code with `-w '\n%{http_code}'` or `-o /dev/null
    -w '%{http_code}'` before processing the response body.
 
-6. **Include -s flag** — always use curl's silent mode to
+6. **Include -s flag** — always use cURL's silent mode to
    suppress progress output.
 
 ## Structured Response Format
@@ -159,14 +159,14 @@ this read-then-execute pattern:
 1. Read the domain catalog (`references/domains/{domain}.md`)
    to confirm the resource exists and note its CRUD paths
 2. Read the resource profile (`references/resources/{domain}/{resource}.md`)
-   to get the minimum payload, constraints, and curl template
+   to get the minimum payload, constraints, and cURL template
 3. Construct the payload starting from the "Minimum JSON Payload" example
 4. Substitute user-provided values (name, namespace, domains, etc.)
 5. For mutually exclusive groups, include ONLY the chosen option
    as an empty object `{}` — the server applies defaults for the rest
-6. Execute the curl call using the template from the profile
+6. Execute the cURL call using the template from the profile
 7. Verify the HTTP response code and report (use `$F5XC_API_TOKEN`
-   in any curl commands you show — never the expanded value)
+   in any cURL commands you show — never the expanded value)
 
 ### For Multi-Resource Workflows
 

@@ -22,7 +22,7 @@ Optional: network_connector
 
 - network_connector: Connect to external networks
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

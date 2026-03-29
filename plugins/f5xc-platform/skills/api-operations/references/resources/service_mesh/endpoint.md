@@ -14,7 +14,7 @@ Domain: service_mesh. Tier: Advanced. Logs: yes. Metrics: yes.
 | Delete | DELETE | /api/config/namespaces/{ns}/endpoints/{name} |
 | List | GET | /api/config/namespaces/{ns}/endpoints |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

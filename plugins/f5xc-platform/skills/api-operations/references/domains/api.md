@@ -1,4 +1,4 @@
-# Api
+# API
 
 Interface definitions, schema validation, and grouping.
 

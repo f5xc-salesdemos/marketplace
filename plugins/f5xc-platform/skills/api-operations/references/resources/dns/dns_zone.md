@@ -22,7 +22,7 @@ Optional: dns_load_balancer
 
 - dns_load_balancer: Geographic or weighted DNS routing
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

@@ -54,7 +54,7 @@ Optional: healthcheck
 | `spec.loadbalancer_algorithm` | enum | ROUND_ROBIN, LEAST_REQUEST, RING_HASH, RANDOM, LB_OVERRIDE | ROUND_ROBIN |
 | `spec.endpoint_selection` | enum | DISTRIBUTED, LOCAL_ONLY, LOCAL_PREFERRED | DISTRIBUTED |
 
-## curl Example
+## cURL Example
 
 ```bash
 curl -X POST "$F5XC_API_URL/api/config/namespaces/default/origin_pools" \

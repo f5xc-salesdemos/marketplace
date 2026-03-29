@@ -14,7 +14,7 @@ Domain: network_security. Tier: Standard. Logs: yes. Metrics: no.
 | Delete | DELETE | /api/config/namespaces/{ns}/network_policys/{name} |
 | List | GET | /api/config/namespaces/{ns}/network_policys |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

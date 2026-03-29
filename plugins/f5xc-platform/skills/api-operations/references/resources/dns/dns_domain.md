@@ -14,7 +14,7 @@ Domain: dns. Tier: Standard. Logs: no. Metrics: no.
 | Delete | DELETE | /api/config/namespaces/{ns}/dns_domains/{name} |
 | List | GET | /api/config/namespaces/{ns}/dns_domains |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

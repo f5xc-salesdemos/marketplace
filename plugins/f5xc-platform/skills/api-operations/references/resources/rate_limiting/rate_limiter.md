@@ -22,7 +22,7 @@ Optional: rate_limiter_policy
 
 - rate_limiter_policy: Detailed rate limiting rules
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

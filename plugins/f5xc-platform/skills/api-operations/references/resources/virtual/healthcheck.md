@@ -49,7 +49,7 @@ Pick exactly one from each group:
 }
 ```
 
-## curl Example
+## cURL Example
 
 ```bash
 curl -X POST "$F5XC_API_URL/api/config/namespaces/default/healthchecks" \

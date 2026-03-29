@@ -14,7 +14,7 @@ Domain: certificates. Tier: Standard. Logs: no. Metrics: no.
 | Delete | DELETE | /api/config/namespaces/{ns}/certificate_chains/{name} |
 | List | GET | /api/config/namespaces/{ns}/certificate_chains |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

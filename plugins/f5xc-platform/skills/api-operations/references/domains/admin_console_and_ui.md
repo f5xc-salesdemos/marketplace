@@ -1,4 +1,4 @@
-# Admin Console And Ui
+# Admin Console And UI
 
 Static UI components and console assets.
 

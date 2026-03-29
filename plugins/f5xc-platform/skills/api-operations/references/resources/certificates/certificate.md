@@ -39,7 +39,7 @@ Domain: certificates. Tier: Standard. Logs: no. Metrics: no.
 }
 ```
 
-## curl Example
+## cURL Example
 
 ```bash
 curl -X POST "$F5XC_API_URL/api/config/namespaces/default/certificates" \

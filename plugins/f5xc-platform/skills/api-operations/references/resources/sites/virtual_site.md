@@ -14,7 +14,7 @@ Domain: sites. Tier: Standard. Logs: no. Metrics: no.
 | Delete | DELETE | /api/config/namespaces/{ns}/virtual_sites/{name} |
 | List | GET | /api/config/namespaces/{ns}/virtual_sites |
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \

@@ -22,7 +22,7 @@ Required: virtual_k8s
 
 - virtual_k8s: Namespace for workload deployment
 
-## curl Template
+## cURL Template
 
 ```bash
 curl -s -X POST \
