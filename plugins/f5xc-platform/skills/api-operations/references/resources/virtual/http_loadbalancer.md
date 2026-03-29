@@ -2,7 +2,7 @@
 
 Layer 7 HTTP/HTTPS load balancer for application traffic distribution
 
-Domain: virtual. Tier: Standard. Logs: yes. Metrics: yes.
+Domain: `virtual`. Tier: Standard. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

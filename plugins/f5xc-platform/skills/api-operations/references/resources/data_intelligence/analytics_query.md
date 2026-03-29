@@ -2,4 +2,4 @@
 
 Analytics query for data analysis
 
-Domain: data_intelligence. Tier: Standard. Logs: no. Metrics: no.
+Domain: `data_intelligence`. Tier: Standard. Logs: no. Metrics: no.

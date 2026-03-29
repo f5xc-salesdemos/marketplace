@@ -20,4 +20,4 @@ Category: Operations. Complexity: advanced. Paths: 56. Schemas: 224.
 
 ## Related Domains
 
-statistics, support
+`statistics`, `support`

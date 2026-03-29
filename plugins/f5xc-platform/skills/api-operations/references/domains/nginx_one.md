@@ -19,4 +19,4 @@ Category: Platform. Complexity: simple. Paths: 13. Schemas: 63.
 
 ## Related Domains
 
-marketplace
+`marketplace`

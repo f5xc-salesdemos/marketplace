@@ -2,7 +2,7 @@
 
 Mesh connectivity configuration between multiple sites
 
-Domain: sites. Tier: Advanced. Logs: no. Metrics: yes.
+Domain: `sites`. Tier: Advanced. Logs: no. Metrics: yes.
 
 ## Dependencies
 

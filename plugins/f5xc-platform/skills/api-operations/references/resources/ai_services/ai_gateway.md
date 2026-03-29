@@ -2,7 +2,7 @@
 
 AI gateway for LLM API management
 
-Domain: ai_services. Tier: Advanced. Logs: yes. Metrics: yes.
+Domain: `ai_services`. Tier: Advanced. Logs: yes. Metrics: yes.
 
 ## Dependencies
 

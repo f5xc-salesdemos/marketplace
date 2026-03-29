@@ -2,4 +2,4 @@
 
 BIG-IP device registration and management
 
-Domain: bigip. Tier: Advanced. Logs: yes. Metrics: yes.
+Domain: `bigip`. Tier: Advanced. Logs: yes. Metrics: yes.

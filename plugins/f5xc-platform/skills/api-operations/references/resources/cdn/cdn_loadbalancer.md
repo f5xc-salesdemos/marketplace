@@ -2,7 +2,7 @@
 
 Content delivery network load balancer for edge caching
 
-Domain: cdn. Tier: Standard. Logs: yes. Metrics: yes.
+Domain: `cdn`. Tier: Standard. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

@@ -2,7 +2,7 @@
 
 Physical or cloud deployment location for edge services
 
-Domain: sites. Tier: Standard. Logs: yes. Metrics: yes.
+Domain: `sites`. Tier: Standard. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

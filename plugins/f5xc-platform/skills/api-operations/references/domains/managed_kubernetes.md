@@ -21,4 +21,4 @@ Category: Infrastructure. Complexity: moderate. Paths: 20. Schemas: 104.
 
 ## Related Domains
 
-container_services, sites, service_mesh
+`container_services`, `sites`, `service_mesh`

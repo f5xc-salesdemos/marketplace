@@ -21,4 +21,4 @@ Category: Platform. Complexity: advanced. Paths: 178. Schemas: 522.
 
 ## Related Domains
 
-users, authentication, system
+`users`, `authentication`, `system`

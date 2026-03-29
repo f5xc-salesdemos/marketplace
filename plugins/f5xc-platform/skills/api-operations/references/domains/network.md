@@ -34,4 +34,4 @@ Category: Networking. Complexity: advanced. Paths: 81. Schemas: 485.
 
 ## Related Domains
 
-virtual, network_security, dns
+`virtual`, `network_security`, `dns`

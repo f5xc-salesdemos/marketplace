@@ -2,7 +2,7 @@
 
 Cloud provider authentication credentials for site deployment
 
-Domain: cloud_infrastructure. Tier: Standard. Logs: no. Metrics: no.
+Domain: `cloud_infrastructure`. Tier: Standard. Logs: no. Metrics: no.
 
 ## Endpoints
 

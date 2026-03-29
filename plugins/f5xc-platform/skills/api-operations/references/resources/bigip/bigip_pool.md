@@ -2,4 +2,4 @@
 
 BIG-IP pool for load balancing integration
 
-Domain: bigip. Tier: Advanced. Logs: no. Metrics: yes.
+Domain: `bigip`. Tier: Advanced. Logs: no. Metrics: yes.

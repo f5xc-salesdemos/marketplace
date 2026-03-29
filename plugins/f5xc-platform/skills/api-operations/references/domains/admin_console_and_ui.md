@@ -20,4 +20,4 @@ Category: Platform. Complexity: simple. Paths: 2. Schemas: 16.
 
 ## Related Domains
 
-admin, system
+`admin`, `system`

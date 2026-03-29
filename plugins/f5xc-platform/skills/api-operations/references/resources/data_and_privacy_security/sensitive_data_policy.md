@@ -2,7 +2,7 @@
 
 Sensitive data policy for PII protection
 
-Domain: data_and_privacy_security. Tier: Advanced. Logs: yes. Metrics: no.
+Domain: `data_and_privacy_security`. Tier: Advanced. Logs: yes. Metrics: no.
 
 ## Endpoints
 

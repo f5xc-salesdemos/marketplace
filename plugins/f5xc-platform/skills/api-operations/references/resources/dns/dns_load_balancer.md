@@ -2,7 +2,7 @@
 
 DNS-based traffic distribution with geographic routing and failover
 
-Domain: dns. Tier: Standard. Logs: yes. Metrics: yes.
+Domain: `dns`. Tier: Standard. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

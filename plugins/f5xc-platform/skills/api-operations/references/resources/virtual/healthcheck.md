@@ -2,7 +2,7 @@
 
 Health monitoring configuration for origin server availability
 
-Domain: virtual. Tier: Standard. Logs: no. Metrics: yes.
+Domain: `virtual`. Tier: Standard. Logs: no. Metrics: yes.
 
 ## Endpoints
 

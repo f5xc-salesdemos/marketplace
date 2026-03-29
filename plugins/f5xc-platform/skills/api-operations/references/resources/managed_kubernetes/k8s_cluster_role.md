@@ -2,7 +2,7 @@
 
 Kubernetes cluster RBAC role configuration
 
-Domain: managed_kubernetes. Tier: Advanced. Logs: no. Metrics: no.
+Domain: `managed_kubernetes`. Tier: Advanced. Logs: no. Metrics: no.
 
 ## Endpoints
 

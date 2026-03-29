@@ -21,4 +21,4 @@ Category: Infrastructure. Complexity: advanced. Paths: 38. Schemas: 283.
 
 ## Related Domains
 
-managed_kubernetes, container_services, virtual
+`managed_kubernetes`, `container_services`, `virtual`

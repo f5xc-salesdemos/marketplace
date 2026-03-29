@@ -44,4 +44,4 @@ Category: Networking. Complexity: advanced. Paths: 133. Schemas: 978.
 
 ## Related Domains
 
-dns, service_policy, network
+`dns`, `service_policy`, `network`

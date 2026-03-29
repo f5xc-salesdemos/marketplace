@@ -2,7 +2,7 @@
 
 Virtual Kubernetes namespace for container workloads
 
-Domain: container_services. Tier: Advanced. Logs: yes. Metrics: yes.
+Domain: `container_services`. Tier: Advanced. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

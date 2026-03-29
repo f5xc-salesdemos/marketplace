@@ -2,7 +2,7 @@
 
 Forward proxy policy for outbound traffic control
 
-Domain: network_security. Tier: Advanced. Logs: yes. Metrics: yes.
+Domain: `network_security`. Tier: Advanced. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

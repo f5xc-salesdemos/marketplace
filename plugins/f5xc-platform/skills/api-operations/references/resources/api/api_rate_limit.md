@@ -2,4 +2,4 @@
 
 API rate limiting configuration for traffic control
 
-Domain: api. Tier: Advanced. Logs: yes. Metrics: yes.
+Domain: `api`. Tier: Advanced. Logs: yes. Metrics: yes.

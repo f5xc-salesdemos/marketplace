@@ -2,4 +2,4 @@
 
 User session for authentication state
 
-Domain: tenant_and_identity. Tier: Standard. Logs: yes. Metrics: no.
+Domain: `tenant_and_identity`. Tier: Standard. Logs: yes. Metrics: no.

@@ -2,7 +2,7 @@
 
 Dashboard for metrics visualization
 
-Domain: statistics. Tier: Standard. Logs: no. Metrics: no.
+Domain: `statistics`. Tier: Standard. Logs: no. Metrics: no.
 
 ## Dependencies
 

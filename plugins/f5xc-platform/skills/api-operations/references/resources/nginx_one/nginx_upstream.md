@@ -2,4 +2,4 @@
 
 NGINX upstream for backend server pools
 
-Domain: nginx_one. Tier: Advanced. Logs: no. Metrics: yes.
+Domain: `nginx_one`. Tier: Advanced. Logs: no. Metrics: yes.

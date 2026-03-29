@@ -18,4 +18,4 @@ Category: Security. Complexity: moderate. Paths: 1. Schemas: 178.
 
 ## Related Domains
 
-bot_defense, ddos
+`bot_defense`, `ddos`

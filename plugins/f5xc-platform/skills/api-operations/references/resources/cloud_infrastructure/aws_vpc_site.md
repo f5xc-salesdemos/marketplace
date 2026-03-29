@@ -2,7 +2,7 @@
 
 AWS VPC site deployment with edge node provisioning
 
-Domain: cloud_infrastructure. Tier: Standard. Logs: yes. Metrics: yes.
+Domain: `cloud_infrastructure`. Tier: Standard. Logs: yes. Metrics: yes.
 
 ## Dependencies
 

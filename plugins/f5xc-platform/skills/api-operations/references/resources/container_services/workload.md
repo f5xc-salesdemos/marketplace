@@ -2,7 +2,7 @@
 
 Container workload deployment configuration
 
-Domain: container_services. Tier: Advanced. Logs: yes. Metrics: yes.
+Domain: `container_services`. Tier: Advanced. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

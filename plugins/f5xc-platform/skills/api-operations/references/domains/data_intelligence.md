@@ -19,4 +19,4 @@ Category: Operations. Complexity: moderate. Paths: 15. Schemas: 77.
 
 ## Related Domains
 
-statistics, observability
+`statistics`, `observability`

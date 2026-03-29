@@ -2,7 +2,7 @@
 
 Network connector for site-to-site or cloud connectivity
 
-Domain: network. Tier: Advanced. Logs: no. Metrics: yes.
+Domain: `network`. Tier: Advanced. Logs: no. Metrics: yes.
 
 ## Endpoints
 

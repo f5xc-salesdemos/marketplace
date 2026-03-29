@@ -20,4 +20,4 @@ Category: Security. Complexity: simple. Paths: 11. Schemas: 71.
 
 ## Related Domains
 
-blindfold, client_side_defense
+`blindfold`, `client_side_defense`

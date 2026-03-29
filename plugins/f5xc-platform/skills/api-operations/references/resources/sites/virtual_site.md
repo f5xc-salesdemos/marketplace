@@ -2,7 +2,7 @@
 
 Logical grouping of sites using label selectors
 
-Domain: sites. Tier: Standard. Logs: no. Metrics: no.
+Domain: `sites`. Tier: Standard. Logs: no. Metrics: no.
 
 ## Endpoints
 

@@ -2,7 +2,7 @@
 
 API schema definition for discovery and protection
 
-Domain: api. Tier: Advanced. Logs: no. Metrics: no.
+Domain: `api`. Tier: Advanced. Logs: no. Metrics: no.
 
 ## Endpoints
 

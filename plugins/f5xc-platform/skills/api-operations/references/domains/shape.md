@@ -20,4 +20,4 @@ Category: Security. Complexity: advanced. Paths: 271. Schemas: 841.
 
 ## Related Domains
 
-bot_defense, virtual
+`bot_defense`, `virtual`

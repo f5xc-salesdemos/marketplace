@@ -2,7 +2,7 @@
 
 Secret management policy configuration
 
-Domain: blindfold. Tier: Standard. Logs: no. Metrics: no.
+Domain: `blindfold`. Tier: Standard. Logs: no. Metrics: no.
 
 ## Endpoints
 

@@ -22,4 +22,4 @@ Category: Platform. Complexity: simple. Paths: 14. Schemas: 42.
 
 ## Related Domains
 
-system, users
+`system`, `users`

@@ -2,7 +2,7 @@
 
 Layer 4 TCP/UDP load balancer for non-HTTP protocol traffic
 
-Domain: virtual. Tier: Standard. Logs: yes. Metrics: yes.
+Domain: `virtual`. Tier: Standard. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

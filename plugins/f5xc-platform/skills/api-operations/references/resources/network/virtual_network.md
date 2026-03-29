@@ -2,7 +2,7 @@
 
 Virtual network for site connectivity and segmentation
 
-Domain: network. Tier: Standard. Logs: no. Metrics: no.
+Domain: `network`. Tier: Standard. Logs: no. Metrics: no.
 
 ## Endpoints
 

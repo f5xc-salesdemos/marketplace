@@ -2,7 +2,7 @@
 
 NGINX configuration for proxy settings
 
-Domain: nginx_one. Tier: Advanced. Logs: yes. Metrics: yes.
+Domain: `nginx_one`. Tier: Advanced. Logs: yes. Metrics: yes.
 
 ## Dependencies
 

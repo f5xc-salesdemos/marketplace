@@ -21,4 +21,4 @@ Category: Security. Complexity: moderate. Paths: 16. Schemas: 80.
 
 ## Related Domains
 
-blindfold, system
+`blindfold`, `system`

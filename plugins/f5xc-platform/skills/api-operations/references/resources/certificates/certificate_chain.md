@@ -2,7 +2,7 @@
 
 Certificate chain for complete trust verification
 
-Domain: certificates. Tier: Standard. Logs: no. Metrics: no.
+Domain: `certificates`. Tier: Standard. Logs: no. Metrics: no.
 
 ## Endpoints
 

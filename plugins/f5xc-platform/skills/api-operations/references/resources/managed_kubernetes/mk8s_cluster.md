@@ -2,7 +2,7 @@
 
 Managed Kubernetes cluster configuration
 
-Domain: managed_kubernetes. Tier: Advanced. Logs: yes. Metrics: yes.
+Domain: `managed_kubernetes`. Tier: Advanced. Logs: yes. Metrics: yes.
 
 ## Dependencies
 

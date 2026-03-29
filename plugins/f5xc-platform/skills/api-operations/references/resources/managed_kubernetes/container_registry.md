@@ -2,7 +2,7 @@
 
 Container image registry for workload images
 
-Domain: managed_kubernetes. Tier: Advanced. Logs: no. Metrics: no.
+Domain: `managed_kubernetes`. Tier: Advanced. Logs: no. Metrics: no.
 
 ## Endpoints
 

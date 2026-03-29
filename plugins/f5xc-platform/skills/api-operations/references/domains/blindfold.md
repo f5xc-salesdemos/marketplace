@@ -20,4 +20,4 @@ Category: Security. Complexity: moderate. Paths: 27. Schemas: 178.
 
 ## Related Domains
 
-client_side_defense, certificates
+`client_side_defense`, `certificates`

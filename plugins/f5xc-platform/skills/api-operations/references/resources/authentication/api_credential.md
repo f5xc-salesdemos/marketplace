@@ -2,7 +2,7 @@
 
 API credential for service authentication
 
-Domain: authentication. Tier: Standard. Logs: no. Metrics: no.
+Domain: `authentication`. Tier: Standard. Logs: no. Metrics: no.
 
 ## Endpoints
 

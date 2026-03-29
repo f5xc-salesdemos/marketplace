@@ -2,7 +2,7 @@
 
 Network security policy for traffic filtering
 
-Domain: network_security. Tier: Standard. Logs: yes. Metrics: no.
+Domain: `network_security`. Tier: Standard. Logs: yes. Metrics: no.
 
 ## Endpoints
 

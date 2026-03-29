@@ -2,7 +2,7 @@
 
 Service mesh endpoint for traffic routing
 
-Domain: service_mesh. Tier: Advanced. Logs: yes. Metrics: yes.
+Domain: `service_mesh`. Tier: Advanced. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

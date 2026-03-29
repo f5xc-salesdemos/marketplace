@@ -20,4 +20,4 @@ Category: Security. Complexity: simple. Paths: 4. Schemas: 33.
 
 ## Related Domains
 
-bot_defense, virtual, network_security
+`bot_defense`, `virtual`, `network_security`

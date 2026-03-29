@@ -19,4 +19,4 @@ Category: Platform. Complexity: simple. Paths: 1. Schemas: 2.
 
 ## Related Domains
 
-sites, system
+`sites`, `system`

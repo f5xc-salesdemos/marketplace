@@ -31,4 +31,4 @@ Category: Infrastructure. Complexity: moderate. Paths: 13. Schemas: 166.
 
 ## Related Domains
 
-managed_kubernetes, sites, service_mesh
+`managed_kubernetes`, `sites`, `service_mesh`

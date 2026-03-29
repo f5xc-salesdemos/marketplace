@@ -2,7 +2,7 @@
 
 Web Application Firewall policy for HTTP traffic protection
 
-Domain: virtual. Tier: Advanced. Logs: yes. Metrics: yes.
+Domain: `virtual`. Tier: Advanced. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

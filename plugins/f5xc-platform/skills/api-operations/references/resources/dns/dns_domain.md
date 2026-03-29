@@ -2,7 +2,7 @@
 
 DNS domain delegation and configuration settings
 
-Domain: dns. Tier: Standard. Logs: no. Metrics: no.
+Domain: `dns`. Tier: Standard. Logs: no. Metrics: no.
 
 ## Endpoints
 

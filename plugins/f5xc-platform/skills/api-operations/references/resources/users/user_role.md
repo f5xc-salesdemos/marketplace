@@ -2,4 +2,4 @@
 
 User role for permission management
 
-Domain: users. Tier: Standard. Logs: no. Metrics: no.
+Domain: `users`. Tier: Standard. Logs: no. Metrics: no.

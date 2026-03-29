@@ -2,7 +2,7 @@
 
 Service-level access control and traffic management rules
 
-Domain: virtual. Tier: Advanced. Logs: yes. Metrics: no.
+Domain: `virtual`. Tier: Advanced. Logs: yes. Metrics: no.
 
 ## Endpoints
 

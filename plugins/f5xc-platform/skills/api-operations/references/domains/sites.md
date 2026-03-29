@@ -33,4 +33,4 @@ Category: Infrastructure. Complexity: advanced. Paths: 133. Schemas: 1093.
 
 ## Related Domains
 
-cloud_infrastructure, customer_edge, managed_kubernetes
+`cloud_infrastructure`, `customer_edge`, `managed_kubernetes`

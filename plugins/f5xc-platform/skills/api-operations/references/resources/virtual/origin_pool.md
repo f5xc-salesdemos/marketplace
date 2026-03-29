@@ -2,7 +2,7 @@
 
 Backend server group for load balancer traffic distribution
 
-Domain: virtual. Tier: Standard. Logs: no. Metrics: yes.
+Domain: `virtual`. Tier: Standard. Logs: no. Metrics: yes.
 
 ## Endpoints
 

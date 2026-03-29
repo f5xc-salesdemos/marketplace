@@ -2,7 +2,7 @@
 
 DDoS protection configuration for traffic scrubbing
 
-Domain: ddos. Tier: Advanced. Logs: yes. Metrics: yes.
+Domain: `ddos`. Tier: Advanced. Logs: yes. Metrics: yes.
 
 ## Dependencies
 

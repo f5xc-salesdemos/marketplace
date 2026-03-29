@@ -2,4 +2,4 @@
 
 Origin server pool for CDN content sourcing
 
-Domain: cdn. Tier: Standard. Logs: no. Metrics: yes.
+Domain: `cdn`. Tier: Standard. Logs: no. Metrics: yes.

@@ -2,7 +2,7 @@
 
 TLS certificate for secure HTTPS connections
 
-Domain: certificates. Tier: Standard. Logs: no. Metrics: no.
+Domain: `certificates`. Tier: Standard. Logs: no. Metrics: no.
 
 ## Endpoints
 

@@ -20,4 +20,4 @@ Category: Platform. Complexity: moderate. Paths: 36. Schemas: 200.
 
 ## Related Domains
 
-bigip, admin
+`bigip`, `admin`

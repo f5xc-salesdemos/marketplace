@@ -22,4 +22,4 @@ Category: Operations. Complexity: advanced. Paths: 77. Schemas: 627.
 
 ## Related Domains
 
-observability, support
+`observability`, `support`

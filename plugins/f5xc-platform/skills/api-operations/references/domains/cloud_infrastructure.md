@@ -35,4 +35,4 @@ Category: Infrastructure. Complexity: advanced. Paths: 31. Schemas: 231.
 
 ## Related Domains
 
-sites, customer_edge
+`sites`, `customer_edge`

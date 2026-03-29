@@ -2,7 +2,7 @@
 
 Rate limiter for traffic throttling and protection
 
-Domain: rate_limiting. Tier: Standard. Logs: yes. Metrics: yes.
+Domain: `rate_limiting`. Tier: Standard. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

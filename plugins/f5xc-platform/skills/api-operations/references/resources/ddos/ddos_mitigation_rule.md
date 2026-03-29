@@ -2,4 +2,4 @@
 
 DDoS mitigation rule for attack response
 
-Domain: ddos. Tier: Advanced. Logs: yes. Metrics: no.
+Domain: `ddos`. Tier: Advanced. Logs: yes. Metrics: no.

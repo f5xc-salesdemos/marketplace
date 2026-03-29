@@ -19,4 +19,4 @@ Category: Security. Complexity: advanced. Paths: 60. Schemas: 257.
 
 ## Related Domains
 
-network_security, virtual
+`network_security`, `virtual`

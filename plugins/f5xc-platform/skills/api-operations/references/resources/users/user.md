@@ -2,7 +2,7 @@
 
 User account for platform access
 
-Domain: users. Tier: Standard. Logs: no. Metrics: no.
+Domain: `users`. Tier: Standard. Logs: no. Metrics: no.
 
 ## Dependencies
 

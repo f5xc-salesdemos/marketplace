@@ -2,7 +2,7 @@
 
 Network firewall for layer 3/4 traffic protection
 
-Domain: network_security. Tier: Standard. Logs: yes. Metrics: yes.
+Domain: `network_security`. Tier: Standard. Logs: yes. Metrics: yes.
 
 ## Endpoints
 

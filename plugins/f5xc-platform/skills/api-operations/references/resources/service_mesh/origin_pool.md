@@ -2,7 +2,7 @@
 
 Backend server group for load balancer traffic distribution
 
-Domain: service_mesh. Tier: Standard. Logs: no. Metrics: yes.
+Domain: `service_mesh`. Tier: Standard. Logs: no. Metrics: yes.
 
 ## Required Fields
 

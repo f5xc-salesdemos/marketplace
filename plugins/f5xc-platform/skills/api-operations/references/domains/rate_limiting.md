@@ -20,4 +20,4 @@ Category: Networking. Complexity: simple. Paths: 12. Schemas: 73.
 
 ## Related Domains
 
-virtual, network_security
+`virtual`, `network_security`

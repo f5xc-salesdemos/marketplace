@@ -2,7 +2,7 @@
 
 Authoritative DNS zone with record management capabilities
 
-Domain: dns. Tier: Standard. Logs: yes. Metrics: yes.
+Domain: `dns`. Tier: Standard. Logs: yes. Metrics: yes.
 
 ## Endpoints
 
