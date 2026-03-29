@@ -35,15 +35,20 @@ only receives the structured result report.
 
 ## Initialization
 
-When given a task, first read the relevant reference files
-from the plugin's skills directory:
+When given a task, read the reference files specified in your
+task prompt. The api-operations skill provides layered reference
+files that give you precise API knowledge:
 
 - **Authentication**: Read
-  `plugins/f5xc-platform/skills/api-auth/SKILL.md` and
-  `plugins/f5xc-platform/skills/api-auth/references/token-management.md`
+  `skills/api-auth/SKILL.md` and
+  `skills/api-auth/references/token-management.md`
 
-These files contain the API authentication patterns, token
-validation procedures, and common error handling.
+- **Resource operations**: Read the files listed in your task
+  prompt from `skills/api-operations/references/`. These contain
+  exact endpoints, payload templates, constraints, and dependencies
+  for 98 resource types across 38 domains.
+
+Read all referenced files before executing any API calls.
 
 ## Environment Variables
 
@@ -134,16 +139,69 @@ failed (e.g., batch operations).
 | 500+ | Server error | Report full error response |
 | Network timeout | Connection issue | Check F5XC_API_URL, report |
 
-## Common API Paths
+## Spec-Aware Workflow
+
+When your task prompt references api-operations skill files, follow
+this read-then-execute pattern:
+
+### For Single Resource Operations
+
+1. Read the domain catalog (`references/domains/{domain}.md`)
+   to confirm the resource exists and note its CRUD paths
+2. Read the resource profile (`references/resources/{domain}/{resource}.md`)
+   to get the minimum payload, constraints, and curl template
+3. Construct the payload starting from the "Minimum JSON Payload" example
+4. Substitute user-provided values (name, namespace, domains, etc.)
+5. For mutually exclusive groups, include ONLY the chosen option
+   as an empty object `{}` — the server applies defaults for the rest
+6. Execute the curl call using the template from the profile
+7. Verify the HTTP response code and report
+
+### For Multi-Resource Workflows
+
+1. Read the workflow file (`references/workflows/{id}.md`)
+2. For each step in dependency order:
+   a. Read that step's resource profile
+   b. Check if the dependency already exists (GET the list endpoint)
+   c. If it needs creation, construct the payload from the profile
+   d. Execute, capture the resource name for downstream steps
+   e. Reference created resources by name in subsequent payloads:
+      `{"name": "resource-name", "namespace": "ns"}`
+3. After all steps, run any verification checks from the workflow
+
+### Dependency Resolution
+
+- Required dependencies MUST exist before the parent resource
+- If a required dependency is missing and user didn't provide
+  its details, report what's needed and stop
+- Optional dependencies: create only if user explicitly requested
+- When checking existence, use the List endpoint and filter by name
+
+## Payload Construction
+
+1. **Start from minimum**: Use the "Minimum JSON Payload" in the
+   resource profile as your starting point
+2. **Replace placeholders**: Substitute APP_NAME, NAMESPACE, DOMAIN,
+   POOL_NAME with user-provided values
+3. **Add optional features**: Only add fields the user requested.
+   For example, to enable WAF, replace `"disable_waf": {}` with
+   `"enable_waf": {"waf_ref": {"name": "waf-name", "namespace": "ns"}}`
+4. **Don't over-specify**: Omit fields you want the server to default.
+   Only include fields from mutually exclusive groups that the user
+   explicitly chose.
+5. **Validate before sending**:
+   - `metadata.name` matches `^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`, max 63 chars
+   - No two fields from the same mutually exclusive group
+   - All required fields are present
+   - Integer fields are within documented ranges
+
+## Fallback API Paths
+
+If no reference files are specified in your task prompt, use these
+common paths:
 
 | Resource | Method | Path |
 | -------- | ------ | ---- |
 | List namespaces | GET | `/api/web/namespaces` |
 | Get namespace | GET | `/api/web/namespaces/{ns}` |
-| List HTTP LBs | POST | `/api/config/namespaces/{ns}/http_loadbalancers` |
-| Get HTTP LB | GET | `/api/config/namespaces/{ns}/http_loadbalancers/{name}` |
-| List origin pools | POST | `/api/config/namespaces/{ns}/origin_pools` |
-| Get origin pool | GET | `/api/config/namespaces/{ns}/origin_pools/{name}` |
-| List app firewalls | POST | `/api/config/namespaces/{ns}/app_firewalls` |
-| List sites | POST | `/api/config/namespaces/system/sites` |
 | Validate token | GET | `/api/web/namespaces` |
