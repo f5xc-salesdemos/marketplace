@@ -84,10 +84,20 @@ curl -s -X METHOD \
 1. **Use environment variables for auth** — never hardcode
    tokens or passwords. Read them from env vars at runtime.
 
-2. **Redact secrets in output** — never echo, log, or
-   include API tokens, passwords, or P12 passwords in your
-   response text. When showing cURL commands in your report,
-   replace the token value with `$F5XC_API_TOKEN`.
+2. **Redact secrets in output** — API tokens, passwords,
+   and P12 passwords are sensitive credentials that must
+   never appear in your response text. This is critical
+   because your output is displayed in the user's terminal
+   where others may see it or it may be logged.
+
+   When showing curl commands in your report, always write
+   the literal string `$F5XC_API_TOKEN` — never the expanded
+   value. Do not use curl `-v` or `--verbose` flags (they
+   print auth headers to stderr). If a response body
+   contains token values, redact them with `<redacted>`.
+
+   **Wrong:** `curl -H "Authorization: APIToken abc123..."`
+   **Right:** `curl -H "Authorization: APIToken $F5XC_API_TOKEN"`
 
 3. **Use jq for JSON parsing** — always pipe JSON responses
    through jq for clean formatting and field extraction.
@@ -113,7 +123,7 @@ After completing a task, report:
 ## Result: [SUCCESS | FAILURE | PARTIAL]
 
 ### Actions Taken
-- <numbered list of API calls made>
+- <numbered list of API calls made, with $F5XC_API_TOKEN not the real value>
 
 ### Response Summary
 - <key data extracted from API responses>
@@ -155,7 +165,8 @@ this read-then-execute pattern:
 5. For mutually exclusive groups, include ONLY the chosen option
    as an empty object `{}` — the server applies defaults for the rest
 6. Execute the curl call using the template from the profile
-7. Verify the HTTP response code and report
+7. Verify the HTTP response code and report (use `$F5XC_API_TOKEN`
+   in any curl commands you show — never the expanded value)
 
 ### For Multi-Resource Workflows
 
