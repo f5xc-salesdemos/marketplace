@@ -65,7 +65,7 @@ Token expiry mid-operation causes cryptic failures — catch it early.
 
 ### 2. Detect Worktree
 
-Check if this session is running inside a git worktree:
+Check if this session is running inside a Git worktree:
 
 ```
 git rev-parse --is-inside-work-tree >/dev/null 2>&1

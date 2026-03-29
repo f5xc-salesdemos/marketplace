@@ -93,10 +93,10 @@ The agent creates branches in the format
 
 ## Worktree Awareness
 
-Claude Code sessions frequently run inside git worktrees for
+Claude Code sessions frequently run inside Git worktrees for
 isolation. The github-ops agent detects worktrees automatically
 during initialization and uses worktree-safe path resolution
-for all git operations. No special handling is needed when
+for all Git operations. No special handling is needed when
 delegating from a worktree session.
 
 ## Rules
