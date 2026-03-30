@@ -66,42 +66,59 @@ list of 28 free tools in this category.
 
 ## curl / API Patterns
 
-### SEC EDGAR -- Full-Text Filing Search
+### SEC EDGAR -- Step 1: Find Company CIK (no key required)
 
 ```bash
-curl -s "https://efts.sec.gov/LATEST/search-index?q=%22acme+corp%22&dateRange=custom&startdt=2023-01-01&enddt=2024-01-01&forms=10-K" \
-  -H "User-Agent: CompanyName admin@company.com" \
-  | jq '.hits.hits[] | {filing: ._source.file_description, date: ._source.file_date}'
+# Look up CIK from company name using the tickers file
+COMPANY="canadian imperial bank"
+curl -s "https://www.sec.gov/files/company_tickers.json" \
+  -H "User-Agent: OSINTFramework research@osint.local" \
+  | jq --arg q "$COMPANY" '[to_entries[].value | select(.title | ascii_downcase | test($q))]'
 ```
 
-### SEC EDGAR -- Company Filings by CIK
+### SEC EDGAR -- Step 2: Get Filings by CIK (no key required)
 
 ```bash
-curl -s "https://data.sec.gov/submissions/CIK0000320193.json" \
-  -H "User-Agent: CompanyName admin@company.com" \
-  | jq '{name, cik, filings: .filings.recent | {forms: .form[:5], dates: .filingDate[:5]}}'
+# Replace CIK with the value from Step 1 (zero-padded to 10 digits)
+CIK="0001045520"
+curl -s "https://data.sec.gov/submissions/CIK${CIK}.json" \
+  -H "User-Agent: OSINTFramework research@osint.local" \
+  | jq '{name, cik, tickers, exchanges, sic, sicDescription, filings: {forms: .filings.recent.form[:10], dates: .filings.recent.filingDate[:10]}}'
 ```
 
-### OpenCorporates -- Company Search
+### OpenCorporates -- Company Search (API key required)
 
 ```bash
-curl -s "https://api.opencorporates.com/v0.4/companies/search?q=acme+corp&api_token=YOUR_TOKEN" \
-  | jq '.results.companies[] | {name: .company.name, jurisdiction: .company.jurisdiction_code, status: .company.current_status}'
+if [ -n "${OPENCORPORATES_API_KEY:-}" ]; then
+  curl -s "https://api.opencorporates.com/v0.4/companies/search?q=acme+corp&api_token=${OPENCORPORATES_API_KEY}" \
+    | jq '.results.companies[] | {name: .company.name, jurisdiction: .company.jurisdiction_code, status: .company.current_status}'
+else
+  echo "[skip] OpenCorporates requires API key (set OPENCORPORATES_API_KEY)"
+fi
 ```
 
-### Companies House UK -- Company Details
+### Companies House UK -- Company Details (API key required)
 
 ```bash
-curl -s "https://api.company-information.service.gov.uk/company/00000001" \
-  -H "Authorization: Basic $(echo -n 'YOUR_API_KEY:' | base64)" \
-  | jq '{company_name, company_status, type, date_of_creation, registered_office_address}'
+if [ -n "${COMPANIES_HOUSE_API_KEY:-}" ]; then
+  curl -s "https://api.company-information.service.gov.uk/company/00000001" \
+    -H "Authorization: Basic $(echo -n "${COMPANIES_HOUSE_API_KEY}:" | base64)" \
+    | jq '{company_name, company_status, type, date_of_creation, registered_office_address}'
+else
+  echo "[skip] Companies House requires API key (set COMPANIES_HOUSE_API_KEY)"
+fi
 ```
 
-### Crunchbase -- Organization Lookup
+### Domain Inference
+
+When investigating a company, infer the likely domain and pivot:
 
 ```bash
-curl -s "https://api.crunchbase.com/api/v4/entities/organizations/openai?user_key=YOUR_KEY" \
-  | jq '{name: .properties.name, short_description: .properties.short_description, funding_total: .properties.funding_total}'
+# Infer domain from company name, then run domain-recon
+COMPANY_DOMAIN="cibc.com"  # inferred from company name
+whois "$COMPANY_DOMAIN" 2>/dev/null | grep -iE '(registra|creation|expir|name server)' | head -10
+dig "$COMPANY_DOMAIN" A +short
+subfinder -d "$COMPANY_DOMAIN" -silent -rls 5 | head -20
 ```
 
 ### EU VIES -- VAT Number Validation

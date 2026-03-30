@@ -55,7 +55,54 @@ If the server sends a `Retry-After` header, that value is used instead.
 
 ---
 
-## 3. Rate Limit Registry -- CLI Tools with Internal Rate Handling
+## 3. API Key Requirements
+
+Some APIs require authentication. Check for the env var before calling —
+if missing, skip gracefully with a message.
+
+| API | Env Var | Free Tier | Skip Message |
+|-----|---------|-----------|-------------|
+| OpenCorporates | `OPENCORPORATES_API_KEY` | Requires token | "OpenCorporates requires API key (set OPENCORPORATES_API_KEY)" |
+| OpenSanctions | `OPENSANCTIONS_API_KEY` | Requires token | "OpenSanctions requires API key (set OPENSANCTIONS_API_KEY)" |
+| Shodan | `SHODAN_API_KEY` | Free key available | "Shodan requires API key (set SHODAN_API_KEY)" |
+| VirusTotal | `VT_API_KEY` | Free key available | "VirusTotal requires API key (set VT_API_KEY)" |
+| HIBP | `HIBP_API_KEY` | Paid for email search | "HIBP email search requires paid key (set HIBP_API_KEY)" |
+| NVD | `NVD_API_KEY` | Optional (higher limits) | Works without key at 5/30s; set NVD_API_KEY for 50/30s |
+| GitHub | `GH_TOKEN` | Optional (higher limits) | Works without token at 60/hr; uses GH_TOKEN if set |
+| AbuseIPDB | `ABUSEIPDB_API_KEY` | Free key available | "AbuseIPDB requires API key (set ABUSEIPDB_API_KEY)" |
+
+### API Key Check Helper
+
+```bash
+# Check if an API key is available; skip if not
+osint_require_key() {
+  local api="$1" var="$2"
+  if [ -z "${!var:-}" ]; then
+    echo "[skip] $api requires API key (set $var)" >&2
+    return 1
+  fi
+  return 0
+}
+
+# Usage:
+# osint_require_key "OpenCorporates" "OPENCORPORATES_API_KEY" || { echo "Skipping OpenCorporates"; continue; }
+# curl -s "https://api.opencorporates.com/v0.4/companies/search?q=TARGET&api_token=${OPENCORPORATES_API_KEY}"
+```
+
+### APIs That Work Without Keys
+
+These APIs are fully free with no authentication:
+
+- **SEC EDGAR** — requires User-Agent header only (no key)
+- **ipinfo.io** — 1,000/day without token
+- **crt.sh** — no auth, 60/min
+- **ip-api.com** — 45/min without key
+- **NVD** — 5/30s without key (optional key for higher limits)
+- **whois/dig/nslookup** — protocol-based, no auth
+
+---
+
+## 4. Rate Limit Registry -- CLI Tools with Internal Rate Handling
 
 | Tool | Rate Limit Behavior | Built-in Flags | Recommended Config |
 |------|-------------------|----------------|-------------------|

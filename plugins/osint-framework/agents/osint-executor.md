@@ -36,6 +36,34 @@ Tool: <tool-name>
 Install: <install command from reference file>
 ```
 
+## API Key Detection
+
+Before calling any API that requires authentication, check the
+corresponding environment variable. If missing, SKIP the API
+with a clear message — never fail silently.
+
+```bash
+# Check if key exists; skip if missing
+if [ -z "${OPENCORPORATES_API_KEY:-}" ]; then
+  echo "[skip] OpenCorporates requires API key (set OPENCORPORATES_API_KEY)"
+else
+  curl -s "https://api.opencorporates.com/v0.4/companies/search?q=TARGET&api_token=${OPENCORPORATES_API_KEY}"
+fi
+```
+
+| API | Env Var | Required? |
+|-----|---------|-----------|
+| OpenCorporates | `OPENCORPORATES_API_KEY` | Yes |
+| OpenSanctions | `OPENSANCTIONS_API_KEY` | Yes |
+| Shodan | `SHODAN_API_KEY` | Yes |
+| VirusTotal | `VT_API_KEY` | Yes |
+| HIBP (email) | `HIBP_API_KEY` | Yes (paid) |
+| NVD | `NVD_API_KEY` | No (optional, higher limits) |
+| GitHub | `GH_TOKEN` | No (optional, higher limits) |
+| SEC EDGAR | None | No (User-Agent header only) |
+| ipinfo.io | None | No (1,000/day free) |
+| crt.sh | None | No |
+
 ## Rate Limit Awareness
 
 Before executing any tool that calls external APIs, consult
