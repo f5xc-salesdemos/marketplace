@@ -6,6 +6,63 @@
 
 ---
 
+## Rate Limiting
+
+All API calls in these pipelines should use rate-aware patterns.
+See `skills/osint-catalog/references/rate-limits.md` for the full registry.
+
+### Helper Functions
+
+Source these before running any pipeline:
+
+```bash
+# Rate-aware curl with exponential backoff on 429/503
+osint_curl() {
+  local url="$1"; shift
+  local retries=0 max_retries=4 delay=1
+  while [ "$retries" -lt "$max_retries" ]; do
+    local response http_code
+    response=$(curl -s -w "\nHTTP_CODE:%{http_code}" --connect-timeout 10 "$@" "$url" 2>/dev/null)
+    http_code=$(echo "$response" | grep "HTTP_CODE:" | sed 's/HTTP_CODE://')
+    response=$(echo "$response" | grep -v "HTTP_CODE:")
+    case "$http_code" in
+      200|201) echo "$response"; return 0 ;;
+      429|503)
+        retries=$((retries + 1))
+        echo "[rate-limit] $url returned $http_code, retry $retries/$max_retries in ${delay}s" >&2
+        sleep "$delay"
+        delay=$((delay * 2))
+        ;;
+      *) echo "$response"; return 0 ;;
+    esac
+  done
+  echo "[rate-limit] $url: max retries exceeded" >&2
+  return 1
+}
+
+# Cache API responses (default 1-hour TTL)
+osint_cache_get() {
+  local api="$1" key="$2" ttl="${3:-3600}"
+  local cache="/tmp/osint-cache-${api}-$(echo -n "$key" | md5sum | cut -d' ' -f1).json"
+  if [ -f "$cache" ]; then
+    local age=$(( $(date +%s) - $(stat -c %Y "$cache") ))
+    if [ "$age" -lt "$ttl" ]; then cat "$cache"; return 0; fi
+  fi
+  return 1
+}
+```
+
+### Key Rate Limits
+
+| API | Limit | Delay |
+|-----|-------|------:|
+| ipinfo.io | 1,000/day | 100ms |
+| crt.sh | 60/min | 1s |
+| NVD | 5/30s | 6s |
+| GitHub | 60/hr (no auth) | 60s |
+
+---
+
 ## 1. Username Investigation Pipeline
 
 **Target:** a username or handle (e.g., `johndoe`)
@@ -442,7 +499,7 @@ echo "[3/6] Enumerating subdomains..."
 if command -v subfinder &>/dev/null; then
   echo "  Running subfinder..."
   subfinder -d "${DOMAIN}" \
-    -silent \
+    -silent -rls 5 \
     -o "${OUTDIR}/subdomains-subfinder.txt" \
     -json -oJ "${OUTDIR}/subdomains-subfinder.json" \
     2>/dev/null || true
@@ -472,6 +529,7 @@ curl -s "https://crt.sh/?q=%25.${DOMAIN}&output=json" 2>/dev/null \
   > "${OUTDIR}/subdomains-crtsh.txt" 2>/dev/null || true
 cat "${OUTDIR}/subdomains-crtsh.txt" >> "${OUTDIR}/subdomains-all.txt" 2>/dev/null || true
 echo "    crt.sh found $(wc -l < "${OUTDIR}/subdomains-crtsh.txt" 2>/dev/null || echo 0) entries"
+sleep 1  # crt.sh: 60/min rate limit
 
 # Deduplicate
 sort -u -o "${OUTDIR}/subdomains-all.txt" "${OUTDIR}/subdomains-all.txt"
@@ -528,7 +586,7 @@ echo "[5/6] Running vulnerability scan..."
 if command -v nuclei &>/dev/null && [ -s "${OUTDIR}/live-urls.txt" ]; then
   nuclei -l "${OUTDIR}/live-urls.txt" \
     -severity low,medium,high,critical \
-    -silent \
+    -silent -rate-limit 10 \
     -json \
     -o "${OUTDIR}/nuclei-results.json" \
     2>/dev/null || true

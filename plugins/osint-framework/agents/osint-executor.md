@@ -36,12 +36,51 @@ Tool: <tool-name>
 Install: <install command from reference file>
 ```
 
+## Rate Limit Awareness
+
+Before executing any tool that calls external APIs, consult
+`skills/osint-catalog/references/rate-limits.md`.
+
+### Quick Reference
+
+| Tool/API | Limit | Delay Between Calls |
+|----------|-------|--------------------:|
+| ipinfo.io | 1,000/day | 100ms |
+| crt.sh | 60/min | 1s |
+| NVD API | 5/30s (no key) | 6s |
+| VirusTotal | 4/min | 15s |
+| Shodan | 1/sec | 1s |
+| GitHub API | 60/hr (no auth) | 60s |
+| subfinder | Per-provider | Use `-rls 5` |
+| nuclei | Per-template | Use `-rate-limit 10` |
+| sherlock/maigret | Per-site | Use `--timeout 10` |
+| Local tools | No limit | None needed |
+
+### Backoff Protocol
+
+When an API returns HTTP 429 or 503:
+
+1. Check for `Retry-After` header
+2. Wait the specified time, or exponential backoff (1s, 2s, 4s, 8s)
+3. Retry up to 4 times
+4. If still rate-limited, report in results and move to next tool
+
+### Caching
+
+Before making an API call, check for cached results:
+
+- Cache: `/tmp/osint-cache-{api}-{md5(target)}.json`
+- Default TTL: 1 hour
+- Always cache within the same investigation to avoid duplicate calls
+
 ## Execution Pattern
 
 1. Verify tool is installed
-2. Run the tool with appropriate flags
-3. Parse the output
-4. Return structured results
+2. Check rate-limit cache for existing results
+3. Run the tool with appropriate flags (including rate-limit flags)
+4. Parse the output
+5. Cache the result
+6. Return structured results
 
 ## OPSEC Classifications
 
@@ -54,19 +93,21 @@ Install: <install command from reference file>
 
 ### sherlock
 
-- **Command**: `sherlock TARGET --output /tmp/sherlock-TARGET.txt --json /tmp/sherlock-TARGET.json`
+- **Command**: `sherlock TARGET --timeout 10 --output /tmp/sherlock-TARGET.txt --json /tmp/sherlock-TARGET.json`
 - **Output format**: JSON file + text file
 - **Parse**: `jq -r '.[] | select(.status == "Claimed") | .url' /tmp/sherlock-TARGET.json`
 - **Timeout**: 120 seconds
 - **OPSEC**: Passive (queries third-party sites, not target infrastructure)
+- **Rate Limit**: Built-in per-site handling. Use `--timeout 10` to prevent hangs.
 
 ### maigret
 
-- **Command**: `maigret TARGET --json flat --output /tmp/maigret-TARGET.json`
+- **Command**: `maigret TARGET --timeout 10 --json flat --output /tmp/maigret-TARGET.json`
 - **Output format**: JSON file
 - **Parse**: `jq -r '.[] | select(.status.status == "Claimed") | {site: .site.name, url: .status.url}' /tmp/maigret-TARGET.json`
 - **Timeout**: 180 seconds
 - **OPSEC**: Passive (queries third-party sites, not target infrastructure)
+- **Rate Limit**: Built-in per-site handling. Use `--timeout 10`.
 
 ### sylva
 
@@ -87,6 +128,7 @@ Install: <install command from reference file>
 - **Parse**: `grep '^\[+\]'` to extract lines where an account exists
 - **Timeout**: 120 seconds
 - **OPSEC**: Passive (queries third-party services, not target infrastructure)
+- **Rate Limit**: Per-service limits. Check for `rateLimit` in output. Change IP if persistent.
 
 ### h8mail
 
@@ -121,11 +163,12 @@ Install: <install command from reference file>
 
 ### subfinder
 
-- **Command**: `subfinder -d TARGET -silent` or `subfinder -d TARGET -json | jq -r '.host'`
+- **Command**: `subfinder -d TARGET -silent -rls 5` or `subfinder -d TARGET -json -rls 5 | jq -r '.host'`
 - **Output format**: Text (one subdomain per line) or JSON
 - **Parse**: Stdout is line-delimited subdomains; JSON mode uses jq as shown
 - **Timeout**: 120 seconds
 - **OPSEC**: Passive (uses public data sources)
+- **Rate Limit**: Use `-rls 5` flag (5 requests/sec per provider).
 
 ### amass
 
@@ -145,11 +188,12 @@ Install: <install command from reference file>
 
 ### nuclei
 
-- **Command**: `nuclei -u TARGET -severity medium,high,critical -silent`
+- **Command**: `nuclei -u TARGET -severity medium,high,critical -silent -rate-limit 10`
 - **Output format**: Text (stdout)
 - **Parse**: Each line is a finding: `[template-id] [severity] URL`
 - **Timeout**: 300 seconds
 - **OPSEC**: Active (sends probes to target; may trigger WAF/IDS)
+- **Rate Limit**: Use `-rate-limit 10` (10 req/sec max). Adjust lower for sensitive targets.
 
 ### dnsrecon
 
@@ -272,11 +316,11 @@ Install: <install command from reference file>
 Common OSINT curl recipes:
 
 - **IP geolocation**: `curl -s "https://ipinfo.io/TARGET/json" | jq '{ip, city, region, country, org}'`
-  - Output: JSON. Timeout: 15s. OPSEC: Passive.
+  - Output: JSON. Timeout: 15s. OPSEC: Passive. **Rate: 1,000/day. 100ms delay.**
 - **Have I Been Pwned (headers only)**: `curl -s -o /dev/null -w "%{http_code}" "https://haveibeenpwned.com/api/v3/breachedaccount/TARGET" -H "hibp-api-key: KEY"`
-  - Output: HTTP status code (200 = breached, 404 = clean). Timeout: 15s. OPSEC: Passive.
+  - Output: HTTP status code (200 = breached, 404 = clean). Timeout: 15s. OPSEC: Passive. **Rate: Paid subscription required for email search. Password API is free.**
 - **Certificate transparency (crt.sh)**: `curl -s "https://crt.sh/?q=%25.TARGET&output=json" | jq -r '.[].name_value' | sort -u`
-  - Output: JSON parsed to unique subdomain list. Timeout: 30s. OPSEC: Passive.
+  - Output: JSON parsed to unique subdomain list. Timeout: 30s. OPSEC: Passive. **Rate: 60/min. Add `sleep 1` between calls.**
 
 ### jq patterns
 
