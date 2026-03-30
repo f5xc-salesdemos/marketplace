@@ -54,15 +54,16 @@ list of 28 free tools in this category.
 
 ## Investigation Workflow
 
-1. **Identify the entity**: Search OpenCorporates for registration details across jurisdictions
-2. **US public companies**: Query SEC EDGAR for financial filings (10-K, 10-Q, insider trades)
-3. **UK companies**: Check Companies House for officers, filing history, charges
-4. **Funding / startup**: Search Crunchbase for investment rounds, investors, acquisitions
-5. **Annual reports**: Download from AnnualReports.com for financial narrative
-6. **EU companies**: Use Company Data Rex, Europages, or VIES VAT validation
-7. **Relationships**: Map power networks via LittleSis (board memberships, donors)
-8. **Employee enumeration**: Use RecruitEm for LinkedIn X-Ray searches
-9. **Cross-reference**: Pivot to `domain-recon` for company websites, `compliance-risk` for sanctions
+1. **Identify the entity**: Search SEC EDGAR company_tickers.json by ticker, then by company name if ticker fails. For non-US: try OpenCorporates (API key), Companies House (UK), or web search
+2. **SEC EDGAR filings**: Query by CIK for 10-K, 10-Q, 20-F (foreign filers), 8-K. Note: OTC/ADR tickers (RHHBY, LVMHF, etc.) may not match — search by full company name as fallback
+3. **Domain inference**: Infer the primary domain from the company name (e.g., CIBC -> cibc.com). Run WHOIS, DNS, subfinder
+4. **Email infrastructure**: Check MX records to identify email provider (Microsoft 365, Google Workspace, Proofpoint, self-hosted)
+5. **SaaS stack discovery**: Parse TXT records for service verifications (Google, Adobe, Atlassian, DocuSign, Salesforce, MongoDB, AWS, Stripe)
+6. **DMARC policy**: Query `_dmarc.{domain}` TXT for email authentication policy
+7. **Subdomain enumeration**: Run subfinder. If 0 results, fallback to crt.sh certificate transparency
+8. **IP and hosting**: Resolve A records, geolocate via ipinfo.io, identify CDN/hosting (Akamai, Cloudflare, AWS, Azure)
+9. **Relationships**: Map power networks via LittleSis (board memberships, donors)
+10. **Cross-reference**: Pivot to `compliance-risk` for sanctions screening
 
 ## curl / API Patterns
 
@@ -74,6 +75,16 @@ COMPANY="canadian imperial bank"
 curl -s "https://www.sec.gov/files/company_tickers.json" \
   -H "User-Agent: OSINTFramework research@osint.local" \
   | jq --arg q "$COMPANY" '[to_entries[].value | select(.title | ascii_downcase | test($q))]'
+```
+
+### SEC EDGAR -- Fallback: Search by Ticker (handles OTC/ADR tickers)
+
+```bash
+# If company name search fails, try exact ticker match
+TICKER="CM"
+curl -s "https://www.sec.gov/files/company_tickers.json" \
+  -H "User-Agent: OSINTFramework research@osint.local" \
+  | jq --arg t "$TICKER" '[to_entries[].value | select(.ticker == $t)]'
 ```
 
 ### SEC EDGAR -- Step 2: Get Filings by CIK (no key required)
@@ -109,16 +120,38 @@ else
 fi
 ```
 
-### Domain Inference
+### Domain Inference and Infrastructure Discovery
 
-When investigating a company, infer the likely domain and pivot:
+When investigating a company, infer the domain and run full infrastructure discovery:
 
 ```bash
-# Infer domain from company name, then run domain-recon
-COMPANY_DOMAIN="cibc.com"  # inferred from company name
-whois "$COMPANY_DOMAIN" 2>/dev/null | grep -iE '(registra|creation|expir|name server)' | head -10
-dig "$COMPANY_DOMAIN" A +short
-subfinder -d "$COMPANY_DOMAIN" -silent -rls 5 | head -20
+DOMAIN="cibc.com"
+
+# WHOIS
+whois "$DOMAIN" 2>/dev/null | grep -iE '(registra|creation|expir|name server)' | head -10
+
+# DNS records
+for rtype in A MX NS TXT; do echo "--- $rtype ---"; dig "$DOMAIN" "$rtype" +short; done
+
+# DMARC policy (email authentication)
+dig "_dmarc.$DOMAIN" TXT +short
+
+# Email provider (from MX)
+dig "$DOMAIN" MX +short | head -1
+
+# SaaS stack (from TXT records)
+dig "$DOMAIN" TXT +short | grep -oiE 'google|facebook|microsoft|atlassian|adobe|docusign|salesforce|hubspot|zendesk|stripe|mongodb|aws|cloudflare'
+
+# Subdomains (with crt.sh fallback)
+SUBS=$(subfinder -d "$DOMAIN" -silent -rls 5 2>/dev/null | wc -l)
+if [ "$SUBS" -eq 0 ]; then
+  echo "subfinder returned 0 — falling back to crt.sh"
+  curl -s "https://crt.sh/?q=%25.$DOMAIN&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u
+fi
+
+# IP and hosting
+IP=$(dig "$DOMAIN" A +short | head -1)
+curl -s "https://ipinfo.io/$IP/json" | jq '{ip, org, city, country}'
 ```
 
 ### EU VIES -- VAT Number Validation
