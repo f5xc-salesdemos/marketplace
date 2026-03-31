@@ -64,6 +64,41 @@ fi
 | ipinfo.io | None | No (1,000/day free) |
 | crt.sh | None | No |
 
+## Entity Graph Integration
+
+After executing any tool, create entities from the output. Source the graph library first:
+
+```bash
+source "${CLAUDE_PLUGIN_ROOT}/scripts/osint-graph.sh"
+osint_graph_init
+```
+
+### Post-Execution Entity Patterns
+
+After running whois:
+```bash
+D_ID=$(osint_entity_add "domain" "$TARGET" registrar="$REGISTRAR" created="$CREATED" --tool whois)
+```
+
+After running dig:
+```bash
+IP_ID=$(osint_entity_add "ip" "$IP" --tool dig)
+osint_rel_add "$D_ID" "$IP_ID" "resolves_to" --tool dig
+```
+
+After running subfinder:
+```bash
+while read -r sub; do
+  S_ID=$(osint_entity_add "domain" "$sub" --tool subfinder)
+  osint_rel_add "$D_ID" "$S_ID" "associated_with" --tool subfinder
+done < subdomains.txt
+```
+
+After running nmap:
+```bash
+osint_entity_add "ip" "$TARGET" port_22="open/ssh" port_80="open/http" --tool nmap
+```
+
 ## Rate Limit Awareness
 
 Before executing any tool that calls external APIs, consult

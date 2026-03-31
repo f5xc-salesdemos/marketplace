@@ -54,6 +54,50 @@ Never run a tool that was MISSING unless you install it first.
 
 ---
 
+## Graph Integration
+
+Source the entity graph library at the start of every investigation:
+
+```bash
+source "${CLAUDE_PLUGIN_ROOT}/scripts/osint-graph.sh"
+osint_graph_init
+```
+
+After EVERY tool execution, create entities and relationships:
+
+### Entity Creation Patterns
+
+| Tool Output | Entity Type | Example |
+|------------|-------------|---------|
+| GitHub user profile | person + username | `osint_entity_add "person" "$NAME" --tool github-api` |
+| WHOIS domain | domain | `osint_entity_add "domain" "$DOMAIN" --tool whois` |
+| dig A record | ip | `osint_entity_add "ip" "$IP" --tool dig` |
+| MX record | domain (mail provider) | `osint_entity_add "domain" "$MX_HOST" --tool dig` |
+| subfinder subdomain | domain | `osint_entity_add "domain" "$SUB" --tool subfinder` |
+| holehe account | username | `osint_entity_add "username" "$ACCOUNT" --tool holehe` |
+| SEC EDGAR company | company | `osint_entity_add "company" "$NAME" --tool sec-edgar` |
+
+### Relationship Creation Patterns
+
+| Discovery | Relationship | Example |
+|-----------|-------------|---------|
+| Person works at company | works_at | `osint_rel_add "$P_ID" "$C_ID" "works_at"` |
+| Person owns username | owns | `osint_rel_add "$P_ID" "$U_ID" "owns"` |
+| Company owns domain | owns | `osint_rel_add "$C_ID" "$D_ID" "owns"` |
+| Domain resolves to IP | resolves_to | `osint_rel_add "$D_ID" "$IP_ID" "resolves_to"` |
+| Domain hosted by CDN | hosts | `osint_rel_add "$CDN_ID" "$D_ID" "hosts"` |
+
+### Report Generation
+
+At the end of every investigation, generate the graph-based report:
+
+```bash
+osint_graph_report
+osint_graph_stats
+```
+
+---
+
 ## Phase 1: Target Type Detection
 
 Before executing any tools, classify the target. Run these checks
