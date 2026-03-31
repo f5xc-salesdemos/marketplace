@@ -88,17 +88,68 @@ Agent(
 )
 ```
 
+## Compound Query Decomposition
+
+When investigating a person with known employer/role context (e.g., "Robin
+Mordasiewicz who works at F5 as a sales engineer"), decompose into three
+parallel tracks:
+
+1. **Person track**: name → GitHub/GitLab search → social profiles → professional history
+2. **Company track**: employer → domain-recon → verify association
+3. **Correlation track**: link person to company via repos, org membership, bio, TXT records
+
 ## Investigation Workflow
 
-1. **Name Search**: Start with free aggregators (ThatsThem, PeekYou, IDCrawl) for initial hits
-2. **Web Presence**: Check Webmii for visibility score and Snitch.name for social media profiles
-3. **Username Pivot**: If a username is found, pivot to `username-recon` for cross-platform enumeration
-4. **Social Networks**: Deep-dive into discovered social profiles via `social-networks`
-5. **Email Pivot**: If email found, verify and check breaches via `email-recon`
-6. **Face Search**: If a photo is available, use FaceCheckID for reverse face matching
-7. **Registry Search**: Check wedding/baby registries for relationship and life event data
-8. **Genealogy**: For historical or family context, use FamilySearch.org (free) before Ancestry.com
-9. **Public Records**: Cross-reference with `public-records` for court, property, and government data
+1. **GitHub API search** (richest free source): `api.github.com/search/users?q=LASTNAME` → get full profile (company, bio, location, blog, twitter) → repos (employer signals from names) → language stats (skills) → events (current activity) → gists (resume/CV)
+2. **GitLab API**: `gitlab.com/api/v4/users?username=X` — free, no auth, returns profile
+3. **Name Search**: Free aggregators (ThatsThem, PeekYou, IDCrawl) for phone/address/email
+4. **Social Platform Probing**: Check GitHub-discovered handles on Twitter/X, LinkedIn (note: LinkedIn returns HTTP 999 — use Google dork `site:linkedin.com/in "NAME"` as fallback)
+5. **Username Pivot**: Extract username pattern from GitHub → run `username-recon` cross-platform
+6. **Repo Analysis**: Scan repo names for employer/product mentions (e.g., 37 "f5" repos = strong F5 signal). Analyze language distribution for technical skills profile.
+7. **Contribution Events**: `users/{user}/events/public` shows where they work RIGHT NOW
+8. **Family/Associates**: Search GitHub for same surname — may reveal family members
+9. **Employer Domain Pivot**: Infer employer domain → run `domain-recon` (WHOIS, DNS, MX, TXT SaaS stack)
+10. **Email Pivot**: If email found, verify and check breaches via `email-recon`
+11. **Face Search**: If photo available, use FaceCheckID for reverse face matching
+12. **Public Records**: Cross-reference with `public-records` for court, property, government data
+
+## curl / API Patterns for Person Investigation
+
+```bash
+# GitHub user search by surname
+curl -s "https://api.github.com/search/users?q=SURNAME" \
+  -H "Accept: application/vnd.github+json" | jq '.items[:5][] | {login, html_url}'
+
+# Full GitHub profile
+curl -s "https://api.github.com/users/USERNAME" \
+  -H "Accept: application/vnd.github+json" | \
+  jq '{login, name, company, blog, location, bio, twitter_username, public_repos, followers, created_at}'
+
+# Repo names for employer signals
+curl -s "https://api.github.com/users/USERNAME/repos?per_page=100&sort=updated" \
+  -H "Accept: application/vnd.github+json" | \
+  jq '[.[].name] | map(select(test("COMPANY_NAME";"i"))) | length'
+
+# Language distribution (skills profile)
+curl -s "https://api.github.com/users/USERNAME/repos?per_page=100" \
+  -H "Accept: application/vnd.github+json" | \
+  jq '[.[].language] | map(select(.!=null)) | group_by(.) | map({lang:.[0], count:length}) | sort_by(-.count)'
+
+# Recent activity (where they work NOW)
+curl -s "https://api.github.com/users/USERNAME/events/public?per_page=10" \
+  -H "Accept: application/vnd.github+json" | jq '[.[:5][] | {type, repo: .repo.name, created_at}]'
+
+# GitLab profile (no auth needed)
+curl -s "https://gitlab.com/api/v4/users?username=USERNAME" | jq '.[0] | {username, name, bio, web_url}'
+
+# Gists (may contain resume, config, keys)
+curl -s "https://api.github.com/users/USERNAME/gists?per_page=10" \
+  -H "Accept: application/vnd.github+json" | jq '[.[] | {description, files: [.files | keys[]]}]'
+
+# Family/associate search (same surname)
+curl -s "https://api.github.com/search/users?q=SURNAME" \
+  -H "Accept: application/vnd.github+json" | jq '[.items[] | {login, html_url}]'
+```
 
 ## Cross-Category Pivots
 
