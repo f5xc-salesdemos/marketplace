@@ -401,7 +401,16 @@ ls -la "${OUTDIR}/"
 
 ```bash
 # Fast email overview — emailrep + gravatar + MX in one shot
-EMAIL="user@example.com" && echo "--- emailrep ---" && curl -s "https://emailrep.io/${EMAIL}" | jq '{reputation,suspicious,profiles:.details.profiles}' 2>/dev/null && echo "--- gravatar ---" && curl -s "https://en.gravatar.com/$(echo -n "$EMAIL" | tr '[:upper:]' '[:lower:]' | md5sum | awk '{print $1}').json" | jq '.entry[0].displayName // "none"' 2>/dev/null && echo "--- MX ---" && dig "${EMAIL##*@}" MX +short
+EMAIL="user@example.com" \
+  && echo "--- emailrep ---" \
+  && curl -s "https://emailrep.io/${EMAIL}" \
+    | jq '{reputation,suspicious,profiles:.details.profiles}' 2>/dev/null \
+  && echo "--- gravatar ---" \
+  && curl -s "https://en.gravatar.com/$(echo -n "$EMAIL" \
+    | tr '[:upper:]' '[:lower:]' | md5sum | awk '{print $1}').json" \
+    | jq '.entry[0].displayName // "none"' 2>/dev/null \
+  && echo "--- MX ---" \
+  && dig "${EMAIL##*@}" MX +short
 ```
 
 ---
@@ -888,7 +897,20 @@ ls -la "${OUTDIR}/"
 
 ```bash
 # Fast IP overview — geolocation + reverse DNS + Shodan + blocklist
-IP="93.184.216.34" && echo "--- GeoIP ---" && curl -s "https://ipinfo.io/${IP}/json" | jq '{ip,city,region,country,org}' && echo "--- rDNS ---" && dig -x "$IP" +short && echo "--- Shodan ---" && curl -s "https://internetdb.shodan.io/${IP}" | jq '{ports,hostnames,vulns}' 2>/dev/null && echo "--- Blocklist ---" && R=$(echo "$IP"|awk -F. '{print $4"."$3"."$2"."$1}') && for bl in zen.spamhaus.org bl.spamcop.net; do r=$(dig "${R}.${bl}" +short 2>/dev/null); [ -n "$r" ] && echo "LISTED:$bl" || echo "clean:$bl"; done
+IP="93.184.216.34" \
+  && echo "--- GeoIP ---" \
+  && curl -s "https://ipinfo.io/${IP}/json" | jq '{ip,city,region,country,org}' \
+  && echo "--- rDNS ---" \
+  && dig -x "$IP" +short \
+  && echo "--- Shodan ---" \
+  && curl -s "https://internetdb.shodan.io/${IP}" \
+    | jq '{ports,hostnames,vulns}' 2>/dev/null \
+  && echo "--- Blocklist ---" \
+  && R=$(echo "$IP" | awk -F. '{print $4"."$3"."$2"."$1}') \
+  && for bl in zen.spamhaus.org bl.spamcop.net; do \
+    r=$(dig "${R}.${bl}" +short 2>/dev/null); \
+    [ -n "$r" ] && echo "LISTED:$bl" || echo "clean:$bl"; \
+  done
 ```
 
 ---
