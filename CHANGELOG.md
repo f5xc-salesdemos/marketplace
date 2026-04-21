@@ -13,7 +13,7 @@ and this project adheres to
 - **f5xc-github-ops** bumped to v2.3.1 — rename `local status` to
   `local http_status` in the sourced `gh-poll.sh` and `retry.sh`
   libs so the agent's polling and backoff helpers no longer fail
-  with "read-only variable: status" when the calling shell is zsh
+  with "read-only variable: status" when the calling shell is Zsh
 
 - **f5xc-firecrawl** added v1.1.0 — self-hosted Firecrawl web scraping plugin with
   7 commands (scrape, batch-scrape, crawl, map, search, extract, llmstxt), a
