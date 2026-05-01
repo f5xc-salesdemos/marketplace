@@ -115,15 +115,20 @@ A successful response shows `connectedStatus: "Connected"`.
 
 ## Delegation
 
-When executing auth commands, delegate to the cli-operator agent:
+When executing auth commands, spawn the cli-operator agent with these
+instructions:
 
-```text
-Agent(
-  subagent_type="salesforce:cli-operator",
-  description="Authenticate to Salesforce org",
-  prompt="The user wants to authenticate to a Salesforce org. Check sf org list first to see if any orgs are already connected. Then guide through the appropriate auth method based on available credentials — check them in order, use the first fully satisfied option:\n  1. SF_ACCESS_TOKEN + SF_ORG_INSTANCE_URL both set → sf org login access-token --instance-url $SF_ORG_INSTANCE_URL --no-prompt\n  2. SF_JWT_KEY_FILE + SF_CLIENT_ID + SF_USERNAME all set → sf org login jwt\n  3. SFDX_AUTH_URL set → echo $SFDX_AUTH_URL | sf org login sfdx-url --sfdx-url-stdin\n  4. None of the above fully satisfied → sf org login web (requires browser/VNC)\nDo NOT choose an option unless all required env vars for that option are present. Never echo tokens or auth URLs in output."
-)
-```
+1. Run `sf org list --json` to check existing connections.
+2. Pick the first fully satisfied auth method in order:
+   - `SF_ACCESS_TOKEN` + `SF_ORG_INSTANCE_URL` both set →
+     `sf org login access-token`
+   - `SF_JWT_KEY_FILE` + `SF_CLIENT_ID` + `SF_USERNAME` all set →
+     `sf org login jwt`
+   - `SFDX_AUTH_URL` set →
+     `echo "$SFDX_AUTH_URL" | sf org login sfdx-url --sfdx-url-stdin`
+   - None satisfied → `sf org login web` (requires browser/VNC)
+3. Do NOT choose an option unless all its required env vars are set.
+4. Never echo tokens or auth URLs in output.
 
 ## Environment Variables
 
