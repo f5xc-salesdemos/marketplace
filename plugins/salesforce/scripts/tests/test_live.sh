@@ -66,8 +66,7 @@ test_live_connected_status() {
   }
 
   case "$status" in
-  Connected | Active | Unknown | "RefreshToken has expired"*)
-    ;;
+  Connected | Active | Unknown | "RefreshToken has expired"*) ;;
   *)
     echo "WARNING: unrecognized connectedStatus '$status' for $org (test still passes)"
     ;;

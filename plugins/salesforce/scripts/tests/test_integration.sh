@@ -90,8 +90,7 @@ test_login_commands_in_agent() {
   while IFS= read -r cmd; do
     [ -z "$cmd" ] && continue
     case "$cmd" in
-    "sf org login"* | "sf org list" | "sf org display")
-      ;;
+    "sf org login"* | "sf org list" | "sf org display") ;;
     *)
       echo "unexpected command in sf-login.md: $cmd"
       return 1
