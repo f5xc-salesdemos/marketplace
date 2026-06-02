@@ -31,5 +31,5 @@
 ## Token Efficiency
 
 - [ ] Current prompt budget: ~8.5KB across 6 files. Target: ~6KB without losing flag or field documentation
-- [ ] Remove markdown formatting that adds tokens without helping AI parsing (extra blank lines, horizontal rules)
+- [ ] Remove markdown formatting that adds tokens without helping AI parsing (extra empty lines, horizontal rules)
 - [ ] Merge small prompts that share significant content
