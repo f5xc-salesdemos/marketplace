@@ -155,7 +155,7 @@ test_gh_poll_429_returns_status_429() {
 
 test_cache_trim_removes_stale_entries() {
   _load
-  touch -d '2 days ago' "$GITHUB_OPS_HOME/cache/old.body"
+  touch -t "$(date -v-2d +%Y%m%d%H%M.%S 2>/dev/null || date -d '2 days ago' +%Y%m%d%H%M.%S)" "$GITHUB_OPS_HOME/cache/old.body"
   touch "$GITHUB_OPS_HOME/cache/fresh.body"
   cache_trim
   [ ! -f "$GITHUB_OPS_HOME/cache/old.body" ] || return 1

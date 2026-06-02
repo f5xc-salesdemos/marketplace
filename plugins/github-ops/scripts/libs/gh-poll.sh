@@ -209,13 +209,12 @@ cache_trim() {
   [ -d "$dir" ] || return 0
   find "$dir" -maxdepth 1 -type f -mtime +1 -delete 2>/dev/null || true
   local count
-  count=$(find "$dir" -maxdepth 1 -type f | wc -l)
+  count=$(find "$dir" -maxdepth 1 -type f | wc -l | tr -d ' ')
   if [ "$count" -gt 1000 ]; then
-    find "$dir" -maxdepth 1 -type f -printf '%T@ %p\n' 2>/dev/null |
-      sort -n |
-      head -n $((count - 1000)) |
-      cut -d' ' -f2- |
-      xargs -r rm -f 2>/dev/null || true
+    local excess=$((count - 1000))
+    ls -tr "$dir" 2>/dev/null |
+      head -n "$excess" |
+      xargs -I{} rm -f "$dir/{}" 2>/dev/null || true
   fi
 }
 

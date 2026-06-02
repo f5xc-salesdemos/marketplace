@@ -50,10 +50,10 @@ test_check_budget_floor_reports_reset_fields() {
 test_gap_wait_mutation_enforces_1s() {
   _load_budget
   rm -f "$GITHUB_OPS_HOME/state/last_mutation"
-  start=$(date +%s%3N)
+  start=$(($(date +%s) * 1000))
   budget_gap_wait_mutation
   budget_gap_wait_mutation
-  end=$(date +%s%3N)
+  end=$(($(date +%s) * 1000))
   [ $((end - start)) -ge 1000 ] || return 1
 }
 
